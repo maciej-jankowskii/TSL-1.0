@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.app-name {
+    font-size: 33px;
+    font-weight: bold;
+}
+
+.app-description {
+    font-size: 21px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.app-logo {
+    max-width: 100%;
+    max-height: 250px;
+    margin: 0 auto;
+    display: block;
+}
+
+.login-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-button {
+    width: 200px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 22px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+
+}
+
+.panel-button {
+    width: 200px;
+    margin: 0 0 10px;
+    text-decoration: none;
+    font-size: 22px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+}
+
+.login-button:hover {
+    background-color: blue;
+}
+
+.panel-button:hover {
+    background-color: darkgreen;
+}
+
+.registration-link {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.footer {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.welcomeMessage{
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.logout-button{
+    padding: 10px 10px;
+    text-decoration: none;
+}

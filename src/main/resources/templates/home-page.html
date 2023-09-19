@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+  <title>TSL COMPANY</title>
+</head>
+<body>
+<div class="header">
+  <div class="container">
+    <div class="app-name">TSL COMPANY</div>
+    <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
+    <img src="/img/logistics.jpg" class="app-logo">
+  </div>
+</div>
+<div class="container">
+  <div class="login-buttons">
+      <p class="welcomeMessage" th:text="'Witaj ' + ${username}"></p>
+      <a href="#" th:href="@{/forwarder}" class="panel-button">Spedycja</a>
+      <a href="#" th:href="@{/bookkeeping}" class="panel-button">Księgowość</a>
+      <a href="#" th:href="@{/management}" class="panel-button">Kierownictwo</a>
+  </div>
+    <a class="logout-button" th:href="@{/logout}">Wyloguj się</a>
+</div>
+<div>
+  <p class="footer">TSL Company | &copy; 2023 Wszystkie prawa zastrzeżone</p>
+</div>
+</body>
+</html>
