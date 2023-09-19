@@ -96,3 +96,84 @@ body {
     padding: 10px 10px;
     text-decoration: none;
 }
+
+.panel-button-forwarder {
+    width: 200px;
+    margin: 0 0 10px;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 6px 9px;
+    background-color: #28a745;
+    color: #fff;
+}
+
+.panel-button-forwarder:hover {
+    background-color: darkgreen;
+}
+
+.registration-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.registration-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.registration-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.registration-button:hover {
+    background-color: #0056b3;
+}
+
+.login-link {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.return-link {
+    text-decoration: none;
+    color: #007bff;
+}

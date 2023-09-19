@@ -1,5 +1,15 @@
 spring:
   security:
-    user:
-      name: admin
-      password: maciej
+#    user:
+#      name: admin
+#      password: maciej
+  datasource:
+    url: jdbc:mysql://localhost:3306/tslcompany
+    username: root
+    password: admin
+  liquibase:
+    change-log: classpath:db/changelog/master.xml
+  jpa:
+    hibernate:
+      ddl-auto: update
+

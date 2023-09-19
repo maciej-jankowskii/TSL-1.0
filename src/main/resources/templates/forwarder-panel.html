@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+    <title>Panel Spedytora - TSL COMPANY</title>
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="app-name">TSL COMPANY</div>
+        <div class="app-description">Panel Spedytora</div>
+    </div>
+</div>
+<div class="container">
+    <div class="button-group">
+        <a href="#" th:href="@{/dodaj-ladunek}" class="panel-button-forwarder">Dodaj Ładunek</a>
+        <a href="#" th:href="@{/utworz-zlecenie}" class="panel-button-forwarder">Utwórz Zlecenie</a>
+        <a href="#" th:href="@{/wyswietl-ladunki}" class="panel-button-forwarder">Wyświetl Wszystkie Ładunki</a>
+        <a href="#" th:href="@{/wyswietl-zlecenia}" class="panel-button-forwarder">Wyświetl Wszystkie Zlecenia</a>
+    </div>
+</div>
+<div>
+    <p class="footer">TSL Company | &copy; 2023 Wszystkie prawa zastrzeżone</p>
+</div>
+</body>
+</html>
