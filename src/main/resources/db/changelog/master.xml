@@ -5,4 +5,11 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
     <include file="001_create_user_tables.xml" relativeToChangelogFile="true"/>
+    <include file="002_create_table_address.xml" relativeToChangelogFile="true"/>
+    <include file="003_create_table_client.xml" relativeToChangelogFile="true"/>
+    <include file="004_create_table_carrier.xml" relativeToChangelogFile="true"/>
+    <include file="005_create_table_cargo.xml" relativeToChangelogFile="true"/>
+    <include file="006_create_table_order.xml" relativeToChangelogFile="true"/>
+    <include file="007_create_table_invoice_from_carrier.xml" relativeToChangelogFile="true"/>
+    <include file="008_create_table_invoice_for_client.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
