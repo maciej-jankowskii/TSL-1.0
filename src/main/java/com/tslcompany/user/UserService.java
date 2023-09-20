@@ -1,8 +1,11 @@
 package com.tslcompany.user;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -10,7 +13,7 @@ public class UserService {
 
     private static final String FORWARDER_ROLE = "FORWARDER";
     private static final String MANAGEMENT_ROLE = "MANAGEMENT";
-    private static final String BOOKKEEPING_ROLE = "BOOKKEEPING";
+    private static final String BOOKKEEPING_ROLE = "ACCOUNTANT";
 
 
     private final UserRepository userRepository;
@@ -23,19 +26,56 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Optional<UserDto> findUserDto(String email){
+    public Optional<UserDto> findUserDto(String email) {
         return userRepository.findUserByEmail(email).map(UserMapper::map);
     }
 
-    public void register(UserRegistrationDto register){
+    public void register(UserRegistrationDto register) {
         User user = new User();
         user.setFirstName(register.getFirstName());
         user.setLastName(register.getLastName());
         user.setEmail(register.getEmail());
         String hashPassword = passwordEncoder.encode(register.getPassword());
         user.setPassword(hashPassword);
-        Optional<UserRole> optionalRole = userRoleRepository.findByName(FORWARDER_ROLE);
-        optionalRole.ifPresent(role -> user.getRoles().add(role));
+//        Optional<UserRole> optionalRole = userRoleRepository.findByName(FORWARDER_ROLE);
+//        optionalRole.ifPresent(role -> user.getRoles().add(role));
         userRepository.save(user);
     }
+
+    public List<String> findAllForwarderEmail(){
+        return userRepository.findAllUsersByRoles_Name(FORWARDER_ROLE)
+                .stream()
+                .map(User::getEmail)
+                .toList();
+    }
+
+    @Transactional
+    public void deleteUserByEmail(String email){
+        userRepository.deleteUserByEmail(email);
+    }
+
+    public List<String> findUserWithoutRole(){
+        List<User> userWithoutRole = userRepository.findUserByRolesIsEmpty();
+        List<String> users = userWithoutRole.stream().map(User::getEmail).toList();
+
+        return users;
+    }
+
+    @Transactional
+    public void setNewRole(Long userId, String roleName){
+        User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        Optional<UserRole> optionalRole = userRoleRepository.findByName(roleName);
+        if (optionalRole.isPresent()){
+            UserRole role = optionalRole.get();
+            user.getRoles().add(role);
+            userRepository.save(user);
+        } else {
+            throw new EntityNotFoundException("Role not found");
+        }
+
+
+    }
+
+
+
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+    <title>Lista Pracowników</title>
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="app-name">TSL COMPANY</div>
+    </div>
+</div>
+<div class="container">
+    <h2>Przypisz rolę użytkownikowi</h2>
+
+    <!-- Formularz do przypisania roli -->
+    <form th:action="@{/assign-role}" method="post">
+        <label for="userId">ID użytkownika:</label>
+        <input type="text" id="userId" name="userId" required>
+
+        <label for="roleName">Nazwa roli:</label>
+        <input type="text" id="roleName" name="roleName" required>
+
+        <button type="submit">Przypisz rolę</button>
+    </form>
+    <br><br><br>
+    <a href="#" th:href="@{/}" class="return-link">Powrót do strony głównej</a>
+</div>

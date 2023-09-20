@@ -23,9 +23,17 @@ public class SecurityConfig {
                 .requestMatchers(mvc.pattern("/registration")).permitAll()
                 .requestMatchers(mvc.pattern("/register")).permitAll()
                 .requestMatchers(mvc.pattern("/confirmation")).permitAll()
-                .requestMatchers(mvc.pattern("/management")).hasRole("MANAGEMENT")
+                .requestMatchers(mvc.pattern("/forwarder")).hasAnyRole("FORWARDER", "MANAGEMENT")
                 .requestMatchers(mvc.pattern("/forwarder-panel")).hasAnyRole("FORWARDER", "MANAGEMENT")
                 .requestMatchers(mvc.pattern("/bookkeeping")).hasAnyRole("BOOKKEEPING", "MANAGEMENT")
+                .requestMatchers(mvc.pattern("/management")).hasRole("MANAGEMENT")
+                .requestMatchers(mvc.pattern("/employee-management")).hasRole("MANAGEMENT")
+                .requestMatchers(mvc.pattern("/forwarder-list")).hasRole("MANAGEMENT")
+                .requestMatchers(mvc.pattern("/delete-forwarders")).hasAnyRole("MANAGEMENT")
+                .requestMatchers(mvc.pattern("/forwarders")).hasRole("MANAGEMENT")
+                .requestMatchers(mvc.pattern("/assign-task-employees")).hasRole("MANAGEMENT")
+                .requestMatchers(mvc.pattern("/assign-task")).hasRole("MANAGEMENT")
+                .requestMatchers(mvc.pattern("/assign-role")).hasRole("MANAGEMENT")
 
                 .anyRequest().authenticated()
         );
