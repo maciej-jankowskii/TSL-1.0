@@ -49,6 +49,13 @@ public class UserService {
                 .toList();
     }
 
+    public List<String> findAllBookkeepingEmail(){
+        return userRepository.findAllUsersByRoles_Name(BOOKKEEPING_ROLE)
+                .stream()
+                .map(User::getEmail)
+                .toList();
+    }
+
     @Transactional
     public void deleteUserByEmail(String email){
         userRepository.deleteUserByEmail(email);

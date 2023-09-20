@@ -32,6 +32,24 @@ public class ManagementController {
         model.addAttribute("forwardersEmail", allForwarders);
         return "forwarders";
     }
+
+    @GetMapping("/bookkeeping-list")
+    public String bookkeepingManagementForm(Model model){
+        List<String> allBookkeeping = userService.findAllBookkeepingEmail();
+        model.addAttribute("bookkeepingEmails", allBookkeeping);
+        return "bookkeepings";
+    }
+
+    @GetMapping("/delete-accountant")
+    public String deleteAccountant(@RequestParam String email){
+        userService.deleteUserByEmail(email);
+        return "redirect:/bookkeepings";
+    }
+    @GetMapping("/bookkeepings")
+    public String bookkeepingForm(){
+        return "bookkeepings";
+    }
+
     @GetMapping("/forwarders")
     public String forwarderForm(){
         return "forwarders";

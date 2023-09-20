@@ -11,5 +11,5 @@ spring:
     change-log: classpath:db/changelog/master.xml
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
 

@@ -12,4 +12,7 @@
     <include file="006_create_table_order.xml" relativeToChangelogFile="true"/>
     <include file="007_create_table_invoice_from_carrier.xml" relativeToChangelogFile="true"/>
     <include file="008_create_table_invoice_for_client.xml" relativeToChangelogFile="true"/>
+<!--    <include file="../testdata/data1.sql" relativeToChangelogFile="true"/>-->
+<!--    <include file="../testdata/data2.sql" relativeToChangelogFile="true"/>-->
+<!--    <include file="../testdata/data3.sql" relativeToChangelogFile="true"/>-->
 </databaseChangeLog>
