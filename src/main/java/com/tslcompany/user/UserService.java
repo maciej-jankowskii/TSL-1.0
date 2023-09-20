@@ -54,11 +54,8 @@ public class UserService {
         userRepository.deleteUserByEmail(email);
     }
 
-    public List<String> findUserWithoutRole(){
-        List<User> userWithoutRole = userRepository.findUserByRolesIsEmpty();
-        List<String> users = userWithoutRole.stream().map(User::getEmail).toList();
-
-        return users;
+    public List<User> findUserWithoutRole(){
+        return userRepository.findUserByRolesIsEmpty();
     }
 
     @Transactional

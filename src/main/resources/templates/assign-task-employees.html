@@ -14,8 +14,17 @@
 </div>
 <div class="container">
     <h2>Przypisz rolę użytkownikowi</h2>
+    <h3>Lista pracowników bez przypisanych zadań</h3>
+    <ul>
+        <li th:each="user: ${usersNoRole}">
+            <span th:text="${'Dane: ' + user.firstName + ' ' + user.lastName + ' ID: ' + user.id}"></span>
+            &nbsp;
+            <span>(Brak roli)</span>
+        </li>
+    </ul>
+    <br><br>
 
-    <!-- Formularz do przypisania roli -->
+
     <form th:action="@{/assign-role}" method="post">
         <label for="userId">ID użytkownika:</label>
         <input type="text" id="userId" name="userId" required>
@@ -26,5 +35,6 @@
         <button type="submit">Przypisz rolę</button>
     </form>
     <br><br><br>
-    <a href="#" th:href="@{/}" class="return-link">Powrót do strony głównej</a>
+
+    <a href="#" th:href="@{/home-page}" class="return-link">Powrót do strony głównej</a>
 </div>

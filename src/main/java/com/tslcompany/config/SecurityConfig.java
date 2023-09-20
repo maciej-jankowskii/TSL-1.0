@@ -1,6 +1,7 @@
 package com.tslcompany.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +13,7 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
+@ComponentScan
 public class SecurityConfig {
 
     @Bean
@@ -24,16 +26,18 @@ public class SecurityConfig {
                 .requestMatchers(mvc.pattern("/register")).permitAll()
                 .requestMatchers(mvc.pattern("/confirmation")).permitAll()
                 .requestMatchers(mvc.pattern("/forwarder")).hasAnyRole("FORWARDER", "MANAGEMENT")
+                .requestMatchers(mvc.pattern("/forwarders")).hasAnyRole("FORWARDER", "MANAGEMENT")
                 .requestMatchers(mvc.pattern("/forwarder-panel")).hasAnyRole("FORWARDER", "MANAGEMENT")
                 .requestMatchers(mvc.pattern("/bookkeeping")).hasAnyRole("BOOKKEEPING", "MANAGEMENT")
                 .requestMatchers(mvc.pattern("/management")).hasRole("MANAGEMENT")
                 .requestMatchers(mvc.pattern("/employee-management")).hasRole("MANAGEMENT")
                 .requestMatchers(mvc.pattern("/forwarder-list")).hasRole("MANAGEMENT")
-                .requestMatchers(mvc.pattern("/delete-forwarders")).hasAnyRole("MANAGEMENT")
+                .requestMatchers(mvc.pattern("/delete-forwarders")).hasRole("MANAGEMENT")
                 .requestMatchers(mvc.pattern("/forwarders")).hasRole("MANAGEMENT")
                 .requestMatchers(mvc.pattern("/assign-task-employees")).hasRole("MANAGEMENT")
-                .requestMatchers(mvc.pattern("/assign-task")).hasRole("MANAGEMENT")
+//                .requestMatchers(mvc.pattern("/assign-task")).hasRole("MANAGEMENT")
                 .requestMatchers(mvc.pattern("/assign-role")).hasRole("MANAGEMENT")
+                .requestMatchers(mvc.pattern("/home-page")).authenticated()
 
                 .anyRequest().authenticated()
         );
