@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.app-name {
+    font-size: 33px;
+    font-weight: bold;
+}
+
+.admin-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-button {
+    width: 300px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 19px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+}
+
+.admin-button:hover {
+    background-color: blue;
+}

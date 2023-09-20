@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/bookkeeping-panel.css" th:href="@{/styles/bookkeeping-panel.css}">
+    <title>Panel Księgowości</title>
 </head>
 <body>
-
+<div class="header">
+    <div class="container">
+        <div class="app-name">Panel Księgowości</div>
+    </div>
+</div>
+<div class="container">
+    <div class="accounting-buttons">
+        <a href="#" class="accounting-button">Faktury od przewoźników</a>
+        <a href="#" class="accounting-button">Faktury dla klientów</a>
+        <a href="#" class="accounting-button">Windykacja</a>
+        <a href="#" class="accounting-button">Wypłaty</a>
+    </div>
+</div>
 </body>
 </html>

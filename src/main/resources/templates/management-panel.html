@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/management-panel.css" th:href="@{/styles/management-panel.css}">
+    <title>Panel Administracyjny</title>
 </head>
 <body>
-
+<div class="header">
+    <div class="container">
+        <div class="app-name">Panel Administracyjny</div>
+    </div>
+</div>
+<div class="container">
+    <div class="admin-buttons">
+        <a href="#" class="admin-button">Wyświetl wszystkich pracowników</a>
+        <a href="#" class="admin-button">Wyświetl wszystkie ładunki</a>
+        <a href="#" class="admin-button">Wyświetl wszystkie zlecenia</a>
+        <a href="#" class="admin-button">Płatności</a>
+    </div>
+</div>
 </body>
 </html>
