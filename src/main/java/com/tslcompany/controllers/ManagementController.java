@@ -74,5 +74,14 @@ public class ManagementController {
         return "redirect:/assign-task-employees";
     }
 
+    @GetMapping("/payments")
+    public String paymentsForm(){
+        return "redirect:/bookkeeping-panel";
+    }
+    @GetMapping("/bookkeeping-panel")
+    public String bookkeepingFormForManagement(){
+        return "bookkeeping-panel";
+    }
+
 
 }
