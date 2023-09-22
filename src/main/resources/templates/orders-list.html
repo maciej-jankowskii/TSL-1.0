@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+  <title>Lista ładunków</title>
+</head>
+<body>
+<div class="header">
+  <div class="container">
+    <div class="app-name">TSL COMPANY</div>
+  </div>
+</div>
+<div class="container">
+  <h2>Lista zleceń</h2>
+  <ul class="cargo-list">
+    <li th:each="order: ${allOrders}">
+      <span th:text="${'Numer ładunku w systemie: ' + order.cargo.id}"></span>
+      <br>
+      <span th:text="${'Cena: ' + order.price}"></span>
+      <br>
+      <span th:text="${'Przewoźnik: ' + order.carrier.fullName}"></span>
+      <br>
+      <span th:text="${'Typ ciężarówki: ' + order.typeOfTruck}"></span>
+      <br>
+      <span th:text="${'Numery ciężarówki: ' + order.truckNumbers}"></span>
+      <br>
+      <span th:text="${'Marża : ' + (order.cargo.price - order.price)}"></span>
+      <br>
+      <span th:text="${'Status : ' + order.orderStatus}"></span>
+      <br>
+      &nbsp;
+    </li>
+  </ul>
+  <a class="return-link" href="#" th:href="@{/forwarder}">Powród do panelu spedytora</a>
+</div>
