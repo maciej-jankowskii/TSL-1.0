@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomePageController {
 
     @GetMapping("/home-page")
-    public String homeForm(Authentication authentication, Model model){
+    public String homeForm(Authentication authentication, Model model) {
         model.addAttribute("username", authentication.getName());
         return "home-page";
     }

@@ -42,14 +42,14 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public List<String> findAllForwarderEmail(){
+    public List<String> findAllForwarderEmail() {
         return userRepository.findAllUsersByRoles_Name(FORWARDER_ROLE)
                 .stream()
                 .map(User::getEmail)
                 .toList();
     }
 
-    public List<String> findAllBookkeepingEmail(){
+    public List<String> findAllBookkeepingEmail() {
         return userRepository.findAllUsersByRoles_Name(BOOKKEEPING_ROLE)
                 .stream()
                 .map(User::getEmail)
@@ -57,19 +57,19 @@ public class UserService {
     }
 
     @Transactional
-    public void deleteUserByEmail(String email){
+    public void deleteUserByEmail(String email) {
         userRepository.deleteUserByEmail(email);
     }
 
-    public List<User> findUserWithoutRole(){
+    public List<User> findUserWithoutRole() {
         return userRepository.findUserByRolesIsEmpty();
     }
 
     @Transactional
-    public void setNewRole(Long userId, String roleName){
+    public void setNewRole(Long userId, String roleName) {
         User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
         Optional<UserRole> optionalRole = userRoleRepository.findByName(roleName);
-        if (optionalRole.isPresent()){
+        if (optionalRole.isPresent()) {
             UserRole role = optionalRole.get();
             user.getRoles().add(role);
             userRepository.save(user);
@@ -79,7 +79,6 @@ public class UserService {
 
 
     }
-
 
 
 }

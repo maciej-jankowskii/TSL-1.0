@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CargoMapper {
 
-    public CargoDto map(Cargo cargo){
+    public CargoDto map(Cargo cargo) {
         CargoDto dto = new CargoDto();
         dto.setCargoNumberFromCustomer(cargo.getCargoNumberFromCustomer());
         dto.setPrice(cargo.getPrice());
@@ -19,7 +19,7 @@ public class CargoMapper {
         return dto;
     }
 
-    public Cargo map(CargoDto cargoDto){
+    public Cargo map(CargoDto cargoDto) {
         Cargo cargo = new Cargo();
         cargo.setCargoNumberFromCustomer(cargoDto.getCargoNumberFromCustomer());
         cargo.setPrice(cargoDto.getPrice());
@@ -31,8 +31,6 @@ public class CargoMapper {
         cargo.setGoods(cargoDto.getGoods());
         cargo.setDescription(cargoDto.getDescription());
         return cargo;
-
-
 
     }
 }

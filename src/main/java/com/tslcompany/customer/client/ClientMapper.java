@@ -14,6 +14,7 @@ public class ClientMapper {
         dto.setTermOfPayment(client.getTermOfPayment());
         return dto;
     }
+
     public Client map(ClientDto clientDto) {
         Client client = new Client();
         client.setFullName(clientDto.getFullName());

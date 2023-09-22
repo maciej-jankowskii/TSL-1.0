@@ -17,20 +17,20 @@ public class RegistrationController {
     }
 
     @GetMapping("/registration")
-    public String registrationForm(Model model){
+    public String registrationForm(Model model) {
         UserRegistrationDto user = new UserRegistrationDto();
         model.addAttribute("user", user);
         return "registration-form";
     }
 
     @PostMapping("/register")
-    public String register(UserRegistrationDto userRegistrationDto){
+    public String register(UserRegistrationDto userRegistrationDto) {
         userService.register(userRegistrationDto);
         return "redirect:/confirmation";
     }
 
     @GetMapping("/confirmation")
-    public String regConfirmation(){
+    public String regConfirmation() {
         return "registration-confirmation";
     }
 }

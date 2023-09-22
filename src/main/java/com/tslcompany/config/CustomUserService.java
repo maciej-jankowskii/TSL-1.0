@@ -26,13 +26,11 @@ public class CustomUserService implements UserDetailsService {
 
     }
 
-    private UserDetails createUserDetails(UserDto userDto){
+    private UserDetails createUserDetails(UserDto userDto) {
         return User.builder()
                 .username(userDto.getEmail())
                 .password(userDto.getPassword())
                 .roles(userDto.getRoles().toArray(String[]::new))
                 .build();
     }
-
-
 }

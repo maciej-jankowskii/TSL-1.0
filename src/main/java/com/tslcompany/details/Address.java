@@ -22,5 +22,4 @@ public class Address {
     private String homeNo;
     private String flatNo;
 
-
 }

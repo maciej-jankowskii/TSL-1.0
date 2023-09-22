@@ -1,15 +1,10 @@
 package com.tslcompany.customer.client;
 
-import com.tslcompany.cargo.Cargo;
-import com.tslcompany.details.Address;
+
 import com.tslcompany.details.AddressDto;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter

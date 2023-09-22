@@ -1,9 +1,6 @@
 package com.tslcompany.customer.carrier;
 
-import com.tslcompany.details.Address;
 import com.tslcompany.details.AddressDto;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 

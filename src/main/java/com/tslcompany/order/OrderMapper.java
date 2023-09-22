@@ -2,14 +2,12 @@ package com.tslcompany.order;
 
 import com.tslcompany.details.OrderStatus;
 import com.tslcompany.truck.Truck;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OrderMapper {
 
-    public OrderDto map(Order order){
+    public OrderDto map(Order order) {
         OrderDto dto = new OrderDto();
         dto.setCargoId(order.getCargo().getId());
         dto.setCarrierId(order.getCarrier().getId());
@@ -20,7 +18,7 @@ public class OrderMapper {
         return dto;
     }
 
-    public Order map(OrderDto orderDto){
+    public Order map(OrderDto orderDto) {
         Order order = new Order();
 
         order.setPrice(orderDto.getPrice());

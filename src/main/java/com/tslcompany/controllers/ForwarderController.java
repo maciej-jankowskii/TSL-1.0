@@ -9,6 +9,7 @@ import com.tslcompany.customer.carrier.CarrierService;
 import com.tslcompany.customer.client.Client;
 import com.tslcompany.customer.client.ClientDto;
 import com.tslcompany.customer.client.ClientService;
+import com.tslcompany.order.Order;
 import com.tslcompany.order.OrderDto;
 import com.tslcompany.order.OrderService;
 import org.springframework.stereotype.Controller;
@@ -36,59 +37,73 @@ public class ForwarderController {
     }
 
     @GetMapping("/forwarder")
-    public String forwarderPanel(){
+    public String forwarderPanel() {
         return "forwarder-panel";
     }
+
     @GetMapping("/add-client")
-    public String addClientForm(){
+    public String addClientForm() {
         return "add-client";
     }
 
     @PostMapping("/add-new-client")
-    public String addClient(@ModelAttribute("clientDto") ClientDto clientDto){
+    public String addClient(@ModelAttribute("clientDto") ClientDto clientDto) {
         ClientDto saved = clientService.addClient(clientDto);
 
         return "redirect:/add-client";
 
     }
+
     @GetMapping("/add-carrier")
-    public String addCarrierForm(){
+    public String addCarrierForm() {
         return "add-carrier";
     }
+
     @PostMapping("/add-new-carrier")
-    public String addCarrier(@ModelAttribute("carrierDto")CarrierDto carrierDto){
+    public String addCarrier(@ModelAttribute("carrierDto") CarrierDto carrierDto) {
         CarrierDto saved = carrierService.addCarrier(carrierDto);
         return "redirect:/add-carrier";
 
     }
+
     @GetMapping("/add-cargo")
-    public String addCargoFrom(Model model){
+    public String addCargoFrom(Model model) {
         List<Client> clients = clientService.findAllClients();
         model.addAttribute("clients", clients);
         return "add-cargo";
     }
+
     @PostMapping("/add-new-cargo")
-    public String addCargo(@ModelAttribute("cargoDto")CargoDto cargoDto){
+    public String addCargo(@ModelAttribute("cargoDto") CargoDto cargoDto) {
         cargoService.addCargo(cargoDto);
         return "redirect:/add-cargo";
     }
+
     @GetMapping("/show-all-cargos")
-    public String cargosForm(Model model){
+    public String cargosForm(Model model) {
         List<Cargo> allCargos = cargoService.findAllCargos();
         model.addAttribute("allCargos", allCargos);
         return "cargos-list";
-
     }
+
+    @GetMapping("/show-all-orders")
+    public String ordersForm(Model model) {
+        List<Order> allOrders = orderService.findAllOrders();
+        model.addAttribute("allOrders", allOrders);
+        return "orders-list";
+    }
+
     @GetMapping("/add-order")
-    public String orderForm(Model model){
+    public String orderForm(Model model) {
         List<Cargo> allCargos = cargoService.findAllCargos();
         List<Carrier> aLlCarriers = carrierService.findALlCarriers();
         model.addAttribute("allCargos", allCargos);
         model.addAttribute("allCarriers", aLlCarriers);
         return "add-order";
     }
+
     @PostMapping("/save-order")
-    public String saveOrder(@ModelAttribute("orderDto")OrderDto orderDto){
+    public String saveOrder(@ModelAttribute("orderDto") OrderDto orderDto) {
         orderService.createOrder(orderDto);
         return "redirect:/add-order";
 

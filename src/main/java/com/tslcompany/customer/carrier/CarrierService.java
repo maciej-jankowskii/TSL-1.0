@@ -1,7 +1,6 @@
 package com.tslcompany.customer.carrier;
 
-import com.tslcompany.customer.client.Client;
-import com.tslcompany.customer.client.ClientDto;
+
 import com.tslcompany.details.Address;
 import com.tslcompany.details.AddressDto;
 import com.tslcompany.details.AddressRepository;
@@ -25,7 +24,7 @@ public class CarrierService {
     }
 
     @Transactional
-    public CarrierDto addCarrier(CarrierDto carrierDto){
+    public CarrierDto addCarrier(CarrierDto carrierDto) {
         Carrier carrier = carrierMapper.map(carrierDto);
         AddressDto addressDto = carrierDto.getAddress();
 
@@ -45,11 +44,11 @@ public class CarrierService {
 
     }
 
-    public List<Carrier> findALlCarriers(){
+    public List<Carrier> findALlCarriers() {
         return (List<Carrier>) carrierRepository.findAll();
     }
 
-    public Optional<Carrier> findById(Long id){
+    public Optional<Carrier> findById(Long id) {
         return carrierRepository.findById(id);
     }
 }

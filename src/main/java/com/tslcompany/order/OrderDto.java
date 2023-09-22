@@ -1,10 +1,6 @@
 package com.tslcompany.order;
 
-import com.tslcompany.cargo.Cargo;
-import com.tslcompany.customer.carrier.Carrier;
-import com.tslcompany.details.OrderStatus;
-import com.tslcompany.truck.Truck;
-import jakarta.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 

@@ -22,11 +22,13 @@ public class ClientService {
         this.clientMapper = clientMapper;
         this.addressRepository = addressRepository;
     }
-    public List<Client> findAllClients(){
+
+    public List<Client> findAllClients() {
         return (List<Client>) clientRepository.findAll();
     }
+
     @Transactional
-    public ClientDto addClient(ClientDto clientDto){
+    public ClientDto addClient(ClientDto clientDto) {
 
         Client client = clientMapper.map(clientDto);
 
@@ -43,8 +45,5 @@ public class ClientService {
         Client saved = clientRepository.save(client);
         return clientMapper.map(saved);
 
-
     }
-
-
 }

@@ -22,17 +22,18 @@ public class CargoService {
         this.cargoMapper = cargoMapper;
     }
 
-    public List<Cargo> findAllCargos(){
+    public List<Cargo> findAllCargos() {
         return (List<Cargo>) cargoRepository.findAll();
 
     }
-    public Optional<Cargo> findCargo(Long id){
+
+    public Optional<Cargo> findCargo(Long id) {
         return cargoRepository.findById(id);
     }
 
 
     @Transactional
-    public CargoDto addCargo(CargoDto cargoDto){
+    public CargoDto addCargo(CargoDto cargoDto) {
         Long clientId = cargoDto.getClientDto().getId();
         Client client = clientRepository.findById(clientId).orElseThrow(() -> new NoSuchElementException("Brak klienta"));
 

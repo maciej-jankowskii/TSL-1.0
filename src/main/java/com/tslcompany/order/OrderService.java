@@ -7,8 +7,8 @@ import com.tslcompany.customer.carrier.CarrierService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -19,7 +19,6 @@ public class OrderService {
     private final CarrierService carrierService;
 
 
-
     public OrderService(OrderRepository orderRepository, OrderMapper orderMapper, CargoService cargoService, CarrierService carrierService) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
@@ -28,7 +27,7 @@ public class OrderService {
     }
 
     @Transactional
-    public OrderDto createOrder(OrderDto orderDto){
+    public OrderDto createOrder(OrderDto orderDto) {
         Order order = orderMapper.map(orderDto);
         Cargo cargo = cargoService.findCargo(orderDto.getCargoId()).orElseThrow(() -> new NoSuchElementException());
         Carrier carrier = carrierService.findById(orderDto.getCarrierId()).orElseThrow(() -> new NoSuchElementException());
@@ -42,7 +41,9 @@ public class OrderService {
         return orderMapper.map(order);
     }
 
-
+    public List<Order> findAllOrders() {
+        return (List<Order>) orderRepository.findAll();
+    }
 
 
 }
