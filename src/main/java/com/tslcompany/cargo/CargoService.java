@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class CargoService {
@@ -24,6 +25,9 @@ public class CargoService {
     public List<Cargo> findAllCargos(){
         return (List<Cargo>) cargoRepository.findAll();
 
+    }
+    public Optional<Cargo> findCargo(Long id){
+        return cargoRepository.findById(id);
     }
 
 

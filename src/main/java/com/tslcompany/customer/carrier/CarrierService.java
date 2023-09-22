@@ -8,6 +8,9 @@ import com.tslcompany.details.AddressRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CarrierService {
 
@@ -40,5 +43,13 @@ public class CarrierService {
         return carrierMapper.map(saved);
 
 
+    }
+
+    public List<Carrier> findALlCarriers(){
+        return (List<Carrier>) carrierRepository.findAll();
+    }
+
+    public Optional<Carrier> findById(Long id){
+        return carrierRepository.findById(id);
     }
 }

@@ -22,9 +22,7 @@
       <br>
       <span th:text="${'Data dodania: ' + cargo.dateAdded}"></span>
       <br>
-      <span th:text="${'Data załadunku: ' + cargo.loadingDate}"></span>
-      <br>
-      <span th:text="${'Data rozładunku: ' + cargo.unloadingDate}"></span>
+      <span th:text="${'Data załadunku: ' + cargo.loadingDate + '| Data rozładunku: ' + cargo.unloadingDate}"></span>
       <br>
       <span th:text="${'Adres załadunku: ' + cargo.loadingAddress}"></span>
       <br>

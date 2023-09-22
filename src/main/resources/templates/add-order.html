@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+    <title>Utwórz Zlecenie - TSL COMPANY</title>
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="app-name">TSL COMPANY</div>
+        <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
+    </div>
+</div>
+<form class="registration-form" th:action="@{/save-order}" method="post">
+    <h2>Utwórz Zlecenie</h2>
+    <div class="form-group">
+        <label for="cargoId">Wybierz ładunek:</label>
+        <select id="cargoId" name="cargoId" required>
+            <option th:each="cargo : ${allCargos}" th:value="${cargo.id}" th:text="${cargo.cargoNumberFromCustomer}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="carrierId">Wybierz przewoźnika:</label>
+        <select id="carrierId" name="carrierId" required>
+            <option th:each="carrier : ${allCarriers}" th:value="${carrier.id}" th:text="${carrier.fullName}"></option>
+        </select>
+    </div>
+    <!-- Pozostałe pola formularza -->
+    <div class="form-group">
+        <label for="price">Cena:</label>
+        <input type="number" id="price" name="price" required>
+    </div>
+    <div class="form-group">
+        <label for="typeOfTruck">Typ ciężarówki:</label>
+        <select id="typeOfTruck" name="typeOfTruck" required>
+            <option value="BOX">BOX</option>
+            <option value="FRIGO">FRIGO</option>
+            <option value="FLATBED">FLATBED</option>
+            <option value="TAUTLINER">TAUTLINER</option>
+            <option value="MEGA">MEGA</option>
+            <option value="TANKER">TANKER</option>
+            <option value="TIPPER">TIPPER</option>
+            <option value="ROAD_TRAIN">ROAD_TRAIN</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="truckNumbers">Numer ciężarówki:</label>
+        <input type="text" id="truckNumbers" name="truckNumbers">
+    </div>
+    <div class="form-group">
+        <label for="orderStatus">Status zamówienia:</label>
+        <select id="orderStatus" name="orderStatus" required>
+            <option value="ASSIGNED_TO_CARRIER">ASSIGNED_TO_CARRIER</option>
+            <option value="ON_LOADING">ON_LOADING</option>
+            <option value="ON_THE_WAY_TO_UNLOADING">ON_THE_WAY_TO_UNLOADING</option>
+            <option value="ON_UNLOADING">ON_UNLOADING</option>
+            <option value="UNLOADED">UNLOADED</option>
+            <option value="ENDED">ENDED</option>
+        </select>
+    </div>
+
+    <button type="submit" class="registration-button">Dodaj Zlecenie</button>
+    <p><a href="/forwarder">Powrót do panelu spedytora</a></p>
+</form>
+</body>
+</html>
