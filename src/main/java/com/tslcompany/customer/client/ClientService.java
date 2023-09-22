@@ -6,6 +6,8 @@ import com.tslcompany.details.AddressRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class ClientService {
 
@@ -19,6 +21,9 @@ public class ClientService {
         this.clientRepository = clientRepository;
         this.clientMapper = clientMapper;
         this.addressRepository = addressRepository;
+    }
+    public List<Client> findAllClients(){
+        return (List<Client>) clientRepository.findAll();
     }
     @Transactional
     public ClientDto addClient(ClientDto clientDto){

@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 public class ClientDto {
-
+    private Long id;
     private String fullName;
     private String shortName;
     private AddressDto address;

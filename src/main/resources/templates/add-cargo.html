@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+  <title>Dodaj ładunek - TSL COMPANY</title>
+</head>
+<body>
+<div class="header">
+  <div class="container">
+    <div class="app-name">TSL COMPANY</div>
+    <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
+  </div>
+</div>
+<div class="container">
+  <form class="cargo-form" th:action="@{/add-new-cargo}" method="post" th:object="${cargoDto}">
+    <h2>Dodaj nowy ładunek</h2>
+    <div class="form-group">
+      <label for="cargoNumberFromCustomer">Numer ładunku od klienta</label>
+      <input type="text" id="cargoNumberFromCustomer" name="cargoNumberFromCustomer" placeholder="Numer ładunku od klienta" required>
+    </div>
+    <div class="form-group">
+      <label for="price">Cena</label>
+      <input type="number" id="price" name="price" placeholder="Cena" required>
+    </div>
+    <div class="form-group">
+      <label for="dateAdded">Data dodania</label>
+      <input type="date" id="dateAdded" name="dateAdded" required>
+    </div>
+    <div class="form-group">
+      <label for="clientDtoId">Klient</label>
+      <select id="clientDtoId" name="clientDto.id">
+        <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.fullName}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="loadingDate">Data załadunku</label>
+      <input type="date" id="loadingDate" name="loadingDate" required>
+    </div>
+    <div class="form-group">
+      <label for="unloadingDate">Data rozładunku</label>
+      <input type="date" id="unloadingDate" name="unloadingDate" required>
+    </div>
+    <div class="form-group">
+      <label for="loadingAddress">Adres załadunku</label>
+      <input type="text" id="loadingAddress" name="loadingAddress" placeholder="Adres załadunku" required>
+    </div>
+    <div class="form-group">
+      <label for="unloadingAddress">Adres rozładunku</label>
+      <input type="text" id="unloadingAddress" name="unloadingAddress" placeholder="Adres rozładunku" required>
+    </div>
+    <div class="form-group">
+      <label for="goods">Towary</label>
+      <input type="text" id="goods" name="goods" placeholder="Towary">
+    </div>
+    <div class="form-group">
+      <label for="description">Opis</label>
+      <input type="text" id="description" name="description" placeholder="Opis">
+    </div>
+    <button type="submit" class="add-cargo-button">Dodaj ładunek</button>
+  </form>
+</div>
+</body>
+</html>

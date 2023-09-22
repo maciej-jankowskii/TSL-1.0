@@ -1,13 +1,20 @@
 package com.tslcompany.controllers;
 
+import com.tslcompany.cargo.Cargo;
+import com.tslcompany.cargo.CargoDto;
+import com.tslcompany.cargo.CargoService;
 import com.tslcompany.customer.carrier.CarrierDto;
 import com.tslcompany.customer.carrier.CarrierService;
+import com.tslcompany.customer.client.Client;
 import com.tslcompany.customer.client.ClientDto;
 import com.tslcompany.customer.client.ClientService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class ForwarderController {
@@ -15,9 +22,12 @@ public class ForwarderController {
     private final ClientService clientService;
     private final CarrierService carrierService;
 
-    public ForwarderController(ClientService clientService, CarrierService carrierService) {
+    private final CargoService cargoService;
+
+    public ForwarderController(ClientService clientService, CarrierService carrierService, CargoService cargoService) {
         this.clientService = clientService;
         this.carrierService = carrierService;
+        this.cargoService = cargoService;
     }
 
     @GetMapping("/forwarder")
@@ -46,4 +56,24 @@ public class ForwarderController {
         return "redirect:/add-carrier";
 
     }
+    @GetMapping("/add-cargo")
+    public String addCargoFrom(Model model){
+        List<Client> clients = clientService.findAllClients();
+        model.addAttribute("clients", clients);
+        return "add-cargo";
+    }
+    @PostMapping("/add-new-cargo")
+    public String addCargo(@ModelAttribute("cargoDto")CargoDto cargoDto){
+        cargoService.addCargo(cargoDto);
+        return "redirect:/add-cargo";
+    }
+    @GetMapping("/show-all-cargos")
+    public String cargosForm(Model model){
+        List<Cargo> allCargos = cargoService.findAllCargos();
+        model.addAttribute("allCargos", allCargos);
+        return "cargos-list";
+
+    }
+
+
 }

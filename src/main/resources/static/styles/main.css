@@ -164,6 +164,22 @@ body {
     cursor: pointer;
 }
 
+
+
+ul.cargo-list {
+    list-style: none;
+    padding: 0;
+}
+
+ul.cargo-list li {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
 .registration-button:hover {
     background-color: #0056b3;
 }

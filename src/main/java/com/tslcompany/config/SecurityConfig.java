@@ -28,6 +28,8 @@ public class SecurityConfig {
                 .requestMatchers(mvc.pattern("/forwarder")).hasAnyRole("FORWARDER", "MANAGEMENT")
                 .requestMatchers(mvc.pattern("/add-client")).hasAnyRole("FORWARDER", "MANAGEMENT")
                 .requestMatchers(mvc.pattern("/add-carrier")).hasAnyRole("FORWARDER", "MANAGEMENT")
+                .requestMatchers(mvc.pattern("/add-cargo")).hasAnyRole("FORWARDER", "MANAGEMENT")
+                .requestMatchers(mvc.pattern("/show-all-cargos")).hasAnyRole("FORWARDER", "MANAGEMENT")
                 .requestMatchers(mvc.pattern("/forwarders")).hasAnyRole("FORWARDER", "MANAGEMENT")
                 .requestMatchers(mvc.pattern("/forwarder-panel")).hasAnyRole("FORWARDER", "MANAGEMENT")
                 .requestMatchers(mvc.pattern("/bookkeeping-panel")).hasAnyRole("ACCOUNTANT", "MANAGEMENT")

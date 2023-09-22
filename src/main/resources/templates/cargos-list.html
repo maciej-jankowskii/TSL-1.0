@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+  <title>Lista ładunków</title>
+</head>
+<body>
+<div class="header">
+  <div class="container">
+    <div class="app-name">TSL COMPANY</div>
+  </div>
+</div>
+<div class="container">
+  <h2>Lista ładunków</h2>
+  <ul class="cargo-list">
+    <li th:each="cargo: ${allCargos}">
+      <span th:text="${'Numer ładunku od klienta: ' + cargo.cargoNumberFromCustomer}"></span>
+      <br>
+      <span th:text="${'Cena: ' + cargo.price}"></span>
+      <br>
+      <span th:text="${'Data dodania: ' + cargo.dateAdded}"></span>
+      <br>
+      <span th:text="${'Data załadunku: ' + cargo.loadingDate}"></span>
+      <br>
+      <span th:text="${'Data rozładunku: ' + cargo.unloadingDate}"></span>
+      <br>
+      <span th:text="${'Adres załadunku: ' + cargo.loadingAddress}"></span>
+      <br>
+      <span th:text="${'Adres rozładunku: ' + cargo.unloadingAddress}"></span>
+      <br>
+      <span th:text="${'Towar: ' + cargo.goods}"></span>
+      <br>
+      &nbsp;
+    </li>
+  </ul>
+  <a class="return-link" href="#" th:href="@{/forwarder}">Powród do panelu spedytora</a>
+</div>
