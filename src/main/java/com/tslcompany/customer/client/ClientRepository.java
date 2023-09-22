@@ -1,4 +1,4 @@
-package com.tslcompany.customer;
+package com.tslcompany.customer.client;
 
 import org.springframework.data.repository.CrudRepository;
 

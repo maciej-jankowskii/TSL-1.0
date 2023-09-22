@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+    <title>Rejestracja - TSL COMPANY</title>
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="app-name">TSL COMPANY</div>
+        <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
+    </div>
+</div>
+<form class="registration-form" th:action="@{/add-new-carrier}" method="post" th:object="${carrierDto}">
+    <h2>Rejestracja nowego przewoźnika</h2>
+    <div class="form-group">
+        <label for="fullName">Pełna nazwa</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Pełna nazwa przewoźnika" required>
+    </div>
+    <div class="form-group">
+        <label for="shortName">Skrócona nazwa</label>
+        <input type="text" id="shortName" name="shortName" placeholder="Skrócona nazwa przewoźnika" required>
+    </div>
+    <div class="form-group">
+        <label for="vatNumber">Numer VAT</label>
+        <input type="text" id="vatNumber" name="vatNumber" placeholder="Numer VAT" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Opis</label>
+        <input type="text" id="description" name="description" placeholder="Krótki opis przewoźnika">
+    </div>
+    <div class="form-group">
+        <label for="termOfPayment">Termin płatności</label>
+        <input type="number" id="termOfPayment" name="termOfPayment" placeholder="Termin płatności" required>
+    </div>
+    <br>
+    <h3>Adres klienta</h3>
+    <div class="form-group">
+        <label for="city">Miasto</label>
+        <input type="text" id="city" name="address.city"  placeholder="Miasto" required>
+    </div>
+    <div class="form-group">
+        <label for="postalCode">Kod pocztowy</label>
+        <input type="text" id="postalCode" name="address.postalCode"  placeholder="Kod pocztowy" required>
+    </div>
+    <div class="form-group">
+        <label for="street">Ulica</label>
+        <input type="text" id="street" name="address.street"  placeholder="Ulica" required>
+    </div>
+    <div class="form-group">
+        <label for="homeNo">Numer domu</label>
+        <input type="text" id="homeNo"  name="address.homeNo"  placeholder="Numer domu" required>
+    </div>
+    <div class="form-group">
+        <label for="flatNo">Numer mieszkania</label>
+        <input type="text" id="flatNo" name="address.flatNo"   placeholder="Numer mieszkania" required>
+    </div>
+
+    <button type="submit" class="registration-button">Dodaj przewoźnika</button>
+    <p><a href="#" th:href="@{/forwarder}">Powrót do panelu spedytora</a></p>
+</form>
+</div>
+</body>
+</html>

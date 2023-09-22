@@ -1,4 +1,4 @@
-package com.tslcompany.customer;
+package com.tslcompany.customer.client;
 
 import com.tslcompany.details.Address;
 import com.tslcompany.details.AddressDto;

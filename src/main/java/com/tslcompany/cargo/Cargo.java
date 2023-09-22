@@ -1,6 +1,6 @@
 package com.tslcompany.cargo;
 
-import com.tslcompany.customer.Client;
+import com.tslcompany.customer.client.Client;
 import com.tslcompany.details.Address;
 import jakarta.persistence.*;
 import lombok.Getter;

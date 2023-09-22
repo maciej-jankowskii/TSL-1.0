@@ -1,25 +1,19 @@
-package com.tslcompany.customer;
+package com.tslcompany.customer.carrier;
 
-import com.tslcompany.cargo.Cargo;
 import com.tslcompany.details.Address;
 import com.tslcompany.details.AddressDto;
-import jakarta.persistence.*;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
-public class ClientDto {
-
+public class CarrierDto {
     private String fullName;
     private String shortName;
     private AddressDto address;
     private String vatNumber;
     private String description;
     private Integer termOfPayment;
-
 }
