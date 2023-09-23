@@ -30,6 +30,21 @@
       <br>
       <span th:text="${'Status : ' + order.orderStatus}"></span>
       <br>
+
+      <form th:action="@{/update-order-status}" method="post">
+        <input type="hidden" name="orderId" th:value="${order.id}">
+        <select name="newOrderStatus">
+          <option value="ASSIGNED_TO_CARRIER">ASSIGNED_TO_CARRIER</option>
+          <option value="ON_LOADING">ON_LOADING</option>
+          <option value="ON_THE_WAY_TO_UNLOADING">ON_THE_WAY_TO_UNLOADING</option>
+          <option value="ON_UNLOADING">ON_UNLOADING</option>
+          <option value="UNLOADED">UNLOADED</option>
+          <option value="ENDED">ENDED</option>
+        </select>
+        <button type="submit">Zmień status</button>
+      </form>
+
+      &nbsp;
       &nbsp;
     </li>
   </ul>

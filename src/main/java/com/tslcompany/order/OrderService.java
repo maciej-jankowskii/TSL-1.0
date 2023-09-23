@@ -4,6 +4,7 @@ import com.tslcompany.cargo.Cargo;
 import com.tslcompany.cargo.CargoService;
 import com.tslcompany.customer.carrier.Carrier;
 import com.tslcompany.customer.carrier.CarrierService;
+import com.tslcompany.details.OrderStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,6 +44,15 @@ public class OrderService {
 
     public List<Order> findAllOrders() {
         return (List<Order>) orderRepository.findAll();
+    }
+
+    public OrderDto changeOrderStatus(Long id, OrderStatus orderStatus){
+        Order order = orderRepository.findById(id).orElseThrow();
+        order.setOrderStatus(orderStatus);
+
+
+        Order saved = orderRepository.save(order);
+        return orderMapper.map(saved);
     }
 
 

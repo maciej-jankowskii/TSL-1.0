@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+  <title>Potwierdzenie Rejestracji</title>
+</head>
+<body>
+<div class="header">
+  <div class="container">
+    <div class="app-name">TSL COMPANY</div>
+    <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
+  </div>
+</div>
+<div class="container">
+  <div class="registration-success">
+    <h2>Potwierdzenie zmiany status</h2>
+    <p>Status został zmieniony poprawnie.</p>
+    <a href="#" th:href="@{/home-page}" class="return-link">Powrót do panelu</a>
+  </div>
+</div>
+<div>
+  <p class="footer">TSL Company | &copy; 2023 Wszystkie prawa zastrzeżone</p>
+</div>
+</body>
+</html>

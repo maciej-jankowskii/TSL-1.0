@@ -9,6 +9,7 @@ import com.tslcompany.customer.carrier.CarrierService;
 import com.tslcompany.customer.client.Client;
 import com.tslcompany.customer.client.ClientDto;
 import com.tslcompany.customer.client.ClientService;
+import com.tslcompany.details.OrderStatus;
 import com.tslcompany.order.Order;
 import com.tslcompany.order.OrderDto;
 import com.tslcompany.order.OrderService;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -108,6 +110,19 @@ public class ForwarderController {
         return "redirect:/add-order";
 
     }
+    @PostMapping("/update-order-status")
+    public String changeStatusOfOrder(@RequestParam("orderId") Long orderId, @RequestParam("newOrderStatus") OrderStatus newStatus){
+        OrderStatus status = OrderStatus.valueOf(String.valueOf(newStatus));
+        orderService.changeOrderStatus(orderId, status);
+
+        return "redirect:/order-status-confirmation";
+    }
+    @GetMapping("/order-status-confirmation")
+    public String changeStatusConfirmation(){
+        return "order-status-confirmation";
+    }
+
+
 
 
 }
