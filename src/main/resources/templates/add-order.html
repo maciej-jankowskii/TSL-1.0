@@ -13,6 +13,9 @@
         <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
     </div>
 </div>
+<div class="container">
+    <a th:href="@{/home-page}" class="panel-button-forwarder">Powrót do panelu głównego</a>
+</div>
 <form class="registration-form" th:action="@{/save-order}" method="post">
     <h2>Utwórz Zlecenie</h2>
     <div class="form-group">
@@ -62,7 +65,6 @@
     </div>
 
     <button type="submit" class="registration-button">Dodaj Zlecenie</button>
-    <p><a href="/forwarder">Powrót do panelu spedytora</a></p>
 </form>
 </body>
 </html>

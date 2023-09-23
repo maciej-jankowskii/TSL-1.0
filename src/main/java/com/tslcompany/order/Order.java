@@ -4,6 +4,7 @@ import com.tslcompany.cargo.Cargo;
 import com.tslcompany.customer.carrier.Carrier;
 import com.tslcompany.details.OrderStatus;
 import com.tslcompany.truck.Truck;
+import com.tslcompany.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

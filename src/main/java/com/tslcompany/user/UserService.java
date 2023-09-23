@@ -30,6 +30,10 @@ public class UserService {
         return userRepository.findUserByEmail(email).map(UserMapper::map);
     }
 
+    public Optional<User> findUser(String emial){
+        return userRepository.findUserByEmail(emial);
+    }
+
     public void register(UserRegistrationDto register) {
         User user = new User();
         user.setFirstName(register.getFirstName());

@@ -18,6 +18,20 @@ body {
     text-align: center;
 }
 
+.panel-button-forwarder {
+    width: 200px;
+    margin: 0 0 10px;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 6px 9px;
+    background-color: #28a745;
+    color: #fff;
+}
+
+.panel-button-forwarder:hover {
+    background-color: darkgreen;
+}
+
 .app-name {
     font-size: 33px;
     font-weight: bold;

@@ -13,6 +13,9 @@
     <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
   </div>
 </div>
+<div class="container">
+  <a th:href="@{/home-page}" class="panel-button-forwarder">Powrót do panelu głównego</a>
+</div>
   <form class="registration-form" th:action="@{/add-new-client}" method="post" th:object="${clientDto}">
     <h2>Rejestracja nowego klienta</h2>
     <div class="form-group">
@@ -59,7 +62,6 @@
     </div>
 
     <button type="submit" class="registration-button">Dodaj klienta</button>
-    <p><a href="#" th:href="@{/forwarder}">Powrót do panelu spedytora</a></p>
   </form>
 </div>
 </body>

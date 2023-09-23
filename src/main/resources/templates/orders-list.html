@@ -26,10 +26,14 @@
       <br>
       <span th:text="${'Numery ciężarówki: ' + order.truckNumbers}"></span>
       <br>
+      <span th:text="${'Data załadunku: ' + order.cargo.loadingDate + ' | Data rozładunku: ' + order.cargo.unloadingDate}"></span>
+      <br>
       <span th:text="${'Marża : ' + (order.cargo.price - order.price)}"></span>
       <br>
       <span th:text="${'Status : ' + order.orderStatus}"></span>
       <br>
+<!--      <span th:text="${'Stworzone przez: ' + order.createdBy.id + ' (' + order.createdBy.email + ')'}"></span>-->
+<!--      <br>-->
 
       <form th:action="@{/update-order-status}" method="post">
         <input type="hidden" name="orderId" th:value="${order.id}">

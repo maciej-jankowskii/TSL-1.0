@@ -5,6 +5,10 @@ import com.tslcompany.cargo.CargoService;
 import com.tslcompany.customer.carrier.Carrier;
 import com.tslcompany.customer.carrier.CarrierService;
 import com.tslcompany.details.OrderStatus;
+import com.tslcompany.user.User;
+import com.tslcompany.user.UserDto;
+import com.tslcompany.user.UserMapper;
+import com.tslcompany.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,13 +22,19 @@ public class OrderService {
     private final OrderMapper orderMapper;
     private final CargoService cargoService;
     private final CarrierService carrierService;
+    private final UserMapper userMapper;
+
+    private final UserService userService;
 
 
-    public OrderService(OrderRepository orderRepository, OrderMapper orderMapper, CargoService cargoService, CarrierService carrierService) {
+
+    public OrderService(OrderRepository orderRepository, OrderMapper orderMapper, CargoService cargoService, CarrierService carrierService, UserMapper userMapper, UserService userService) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
         this.cargoService = cargoService;
         this.carrierService = carrierService;
+        this.userMapper = userMapper;
+        this.userService = userService;
     }
 
     @Transactional
@@ -36,6 +46,7 @@ public class OrderService {
 
         order.setCargo(cargo);
         order.setCarrier(carrier);
+
 
         orderRepository.save(order);
 

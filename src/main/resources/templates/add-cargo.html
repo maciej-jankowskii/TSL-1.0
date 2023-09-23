@@ -14,6 +14,9 @@
   </div>
 </div>
 <div class="container">
+  <a th:href="@{/home-page}" class="panel-button-forwarder">Powrót do panelu głównego</a>
+</div>
+<div class="container">
   <form class="cargo-form" th:action="@{/add-new-cargo}" method="post" th:object="${cargoDto}">
     <h2>Dodaj nowy ładunek</h2>
     <div class="form-group">

@@ -13,6 +13,9 @@ import com.tslcompany.details.OrderStatus;
 import com.tslcompany.order.Order;
 import com.tslcompany.order.OrderDto;
 import com.tslcompany.order.OrderService;
+import com.tslcompany.user.User;
+import com.tslcompany.user.UserDto;
+import com.tslcompany.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +23,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Controller
 public class ForwarderController {
@@ -30,12 +35,14 @@ public class ForwarderController {
 
     private final CargoService cargoService;
     private final OrderService orderService;
+    private final UserService userService;
 
-    public ForwarderController(ClientService clientService, CarrierService carrierService, CargoService cargoService, OrderService orderService) {
+    public ForwarderController(ClientService clientService, CarrierService carrierService, CargoService cargoService, OrderService orderService, UserService userService) {
         this.clientService = clientService;
         this.carrierService = carrierService;
         this.cargoService = cargoService;
         this.orderService = orderService;
+        this.userService = userService;
     }
 
     @GetMapping("/forwarder")
