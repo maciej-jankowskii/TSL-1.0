@@ -80,5 +80,9 @@ public class ManagementController {
     public String bookkeepingFormForManagement(){
         return "bookkeeping-panel";
     }
+    @GetMapping("/database-management")
+    public String databaseForm(){
+        return "data-base-management";
+    }
 
 }

@@ -14,7 +14,7 @@
   </div>
 </div>
 <div class="container">
-  <a th:href="@{/home-page}" class="panel-button-forwarder">Powrót do panelu głównego</a>
+  <a th:href="@{/forwarder}" class="panel-button-forwarder">Powrót do panelu głównego</a>
 </div>
 <div class="container">
   <form class="cargo-form" th:action="@{/add-new-cargo}" method="post" th:object="${cargoDto}">
@@ -27,10 +27,6 @@
       <label for="price">Cena</label>
       <input type="number" id="price" name="price" placeholder="Cena" required>
     </div>
-<!--    <div class="form-group">-->
-<!--      <label for="dateAdded">Data dodania</label>-->
-<!--      <input type="date" id="dateAdded" name="dateAdded" required>-->
-<!--    </div>-->
     <div class="form-group">
       <label for="clientDtoId">Klient</label>
       <select id="clientDtoId" name="clientDto.id">
