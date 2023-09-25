@@ -102,9 +102,11 @@ public class ForwarderController {
     }
 
     @GetMapping("/show-all-orders")
-    public String ordersForm(Model model) {
-        List<Order> allOrders = orderService.findAllOrders();
-        model.addAttribute("allOrders", allOrders);
+    public String ordersForm(Model model, Authentication authentication) {
+        User user = userService.findUser(authentication.getName()).orElseThrow(() -> new NoSuchElementException("Brak użytkownika"));
+        List<Order> userOrders = orderService.findOrdersByUser(user);
+//        List<Order> allOrders = orderService.findAllOrders();
+        model.addAttribute("allOrders", userOrders);
         return "orders-list";
     }
 

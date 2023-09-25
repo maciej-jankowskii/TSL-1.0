@@ -68,6 +68,10 @@ public class OrderService {
     public Optional<Order> findById(Long id){
         return orderRepository.findById(id);
     }
+
+    public List<Order> findOrdersByUser(User user){
+        return orderRepository.findByUser(user);
+    }
     @Transactional
     public void deleteById(Long id){
         orderRepository.deleteById(id);
