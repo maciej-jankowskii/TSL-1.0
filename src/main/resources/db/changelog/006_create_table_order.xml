@@ -46,5 +46,13 @@
             <column name="user_id" type="BIGINT"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="004" author="maciej-jankowski">
+        <addColumn tableName="order_to_send">
+            <column name="is_invoiced" type="BOOLEAN"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="005" author="maciej-jankowski">
+        <sql>UPDATE order_to_send SET is_invoiced = false</sql>
+    </changeSet>
 
 </databaseChangeLog>

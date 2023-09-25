@@ -16,6 +16,7 @@ public class OrderMapper {
         dto.setTruckNumbers(order.getTruckNumbers());
         dto.setUserId(order.getUser().getId()); // zmiany
         dto.setOrderStatus(order.getOrderStatus().name());
+        dto.setInvoiced(order.isInvoiced());
         return dto;
     }
 

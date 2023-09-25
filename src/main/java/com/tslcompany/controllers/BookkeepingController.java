@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class BookkeepingController {
@@ -44,8 +45,10 @@ public class BookkeepingController {
     public String newCarrierInvoice(Model model){
         List<Order> orders = orderService.findAllOrders();
         List<Carrier> carriers = carrierService.findALlCarriers();
+
+        List<Order> noInvoicedOrders = orders.stream().filter(order -> order.isInvoiced() == false).collect(Collectors.toList());
         model.addAttribute("carriers", carriers);
-        model.addAttribute("orders", orders);
+        model.addAttribute("orders", noInvoicedOrders);
         return "new-invoice-carrier";
     }
 

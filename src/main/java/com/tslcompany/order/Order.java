@@ -39,4 +39,5 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;  //zmiany
     private OrderStatus orderStatus;
+    private boolean isInvoiced;
 }
