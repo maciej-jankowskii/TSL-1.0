@@ -50,9 +50,9 @@ public class CargoService {
         BigDecimal price = cargo.getPrice();
         client.setBalance(balance.add(price));
 
-
-
         Cargo saved = cargoRepository.save(cargo);
+
+
         return cargoMapper.map(saved);
     }
 }

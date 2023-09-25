@@ -9,13 +9,13 @@ public class CargoMapper {
         CargoDto dto = new CargoDto();
         dto.setCargoNumberFromCustomer(cargo.getCargoNumberFromCustomer());
         dto.setPrice(cargo.getPrice());
-//        dto.setDateAdded(cargo.getDateAdded());
         dto.setLoadingDate(cargo.getLoadingDate());
         dto.setUnloadingDate(cargo.getUnloadingDate());
         dto.setLoadingAddress(cargo.getLoadingAddress());
         dto.setUnloadingAddress(cargo.getUnloadingAddress());
         dto.setGoods(cargo.getGoods());
         dto.setDescription(cargo.getDescription());
+        dto.setAssignedToOrder(cargo.isAssignedToOrder());
         return dto;
     }
 
@@ -23,7 +23,6 @@ public class CargoMapper {
         Cargo cargo = new Cargo();
         cargo.setCargoNumberFromCustomer(cargoDto.getCargoNumberFromCustomer());
         cargo.setPrice(cargoDto.getPrice());
-//        cargo.setDateAdded(cargoDto.getDateAdded());
         cargo.setLoadingDate(cargoDto.getLoadingDate());
         cargo.setUnloadingDate(cargoDto.getUnloadingDate());
         cargo.setLoadingAddress(cargoDto.getLoadingAddress());

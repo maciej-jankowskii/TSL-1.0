@@ -30,4 +30,5 @@ public class Cargo {
     private String unloadingAddress;
     private String goods;
     private String description;
+    private boolean assignedToOrder;
 }

@@ -1,12 +1,12 @@
 package com.tslcompany.order;
 
 import com.tslcompany.cargo.Cargo;
+import com.tslcompany.cargo.CargoRepository;
 import com.tslcompany.cargo.CargoService;
 import com.tslcompany.customer.carrier.Carrier;
 import com.tslcompany.customer.carrier.CarrierService;
 import com.tslcompany.details.OrderStatus;
 import com.tslcompany.user.User;
-import com.tslcompany.user.UserDto;
 import com.tslcompany.user.UserMapper;
 import com.tslcompany.user.UserService;
 import org.springframework.stereotype.Service;
@@ -28,16 +28,18 @@ public class OrderService {
     private final UserMapper userMapper;
 
     private final UserService userService;
+    private final CargoRepository cargoRepository;
 
 
 
-    public OrderService(OrderRepository orderRepository, OrderMapper orderMapper, CargoService cargoService, CarrierService carrierService, UserMapper userMapper, UserService userService) {
+    public OrderService(OrderRepository orderRepository, OrderMapper orderMapper, CargoService cargoService, CarrierService carrierService, UserMapper userMapper, UserService userService, CargoRepository cargoRepository) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
         this.cargoService = cargoService;
         this.carrierService = carrierService;
         this.userMapper = userMapper;
         this.userService = userService;
+        this.cargoRepository = cargoRepository;
     }
 
     @Transactional
@@ -52,11 +54,12 @@ public class OrderService {
         order.setCargo(cargo);
         order.setCarrier(carrier);
         order.setDateAdded(LocalDate.now());
+        cargo.setAssignedToOrder(true);
         BigDecimal price = order.getPrice();
         BigDecimal balance = carrier.getBalance();
         carrier.setBalance(balance.add(price));
 
-
+        cargoRepository.save(cargo);
         orderRepository.save(order);
 
         return orderMapper.map(order);

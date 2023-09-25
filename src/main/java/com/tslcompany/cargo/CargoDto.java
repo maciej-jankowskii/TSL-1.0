@@ -14,7 +14,6 @@ public class CargoDto {
 
     private String cargoNumberFromCustomer;
     private BigDecimal price;
-//    private LocalDate dateAdded;
     private ClientDto clientDto;
     private LocalDate loadingDate;
     private LocalDate unloadingDate;
@@ -22,4 +21,5 @@ public class CargoDto {
     private String unloadingAddress;
     private String goods;
     private String description;
+    private boolean assignedToOrder;
 }

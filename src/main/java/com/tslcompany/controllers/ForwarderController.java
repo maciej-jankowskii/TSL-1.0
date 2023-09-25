@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Controller
 public class ForwarderController {
@@ -105,7 +106,7 @@ public class ForwarderController {
     public String ordersForm(Model model, Authentication authentication) {
         User user = userService.findUser(authentication.getName()).orElseThrow(() -> new NoSuchElementException("Brak użytkownika"));
         List<Order> userOrders = orderService.findOrdersByUser(user);
-//        List<Order> allOrders = orderService.findAllOrders();
+
         model.addAttribute("allOrders", userOrders);
         return "orders-list";
     }
@@ -114,7 +115,9 @@ public class ForwarderController {
     public String orderForm(Model model) {
         List<Cargo> allCargos = cargoService.findAllCargos();
         List<Carrier> aLlCarriers = carrierService.findALlCarriers();
-        model.addAttribute("allCargos", allCargos);
+
+        List<Cargo> freeCargos = allCargos.stream().filter(cargo -> cargo.isAssignedToOrder() == false).collect(Collectors.toList());
+        model.addAttribute("allCargos", freeCargos);
         model.addAttribute("allCarriers", aLlCarriers);
         return "add-order";
     }

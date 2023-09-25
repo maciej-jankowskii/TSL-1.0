@@ -41,5 +41,21 @@
                                  referencedTableName="client"
                                  referencedColumnNames="id"/>
     </changeSet>
+    <changeSet id="002" author="maciej-jankowski">
+        <addColumn tableName="cargo">
+            <column name="has_order" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="003" author="maciej-jankowski">
+        <sql>UPDATE cargo SET has_order = false</sql>
+    </changeSet>
+    <changeSet id="004" author="maciej-jankowski">
+        <sql>UPDATE cargo SET assigned_to_order = false</sql>
+    </changeSet>
+    <changeSet id="005" author="maciej-jankowski">
+        <dropColumn tableName="cargo" columnName="has_order"/>
+    </changeSet>
 
 </databaseChangeLog>
