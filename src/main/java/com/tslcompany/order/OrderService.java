@@ -12,6 +12,8 @@ import com.tslcompany.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -46,6 +48,10 @@ public class OrderService {
 
         order.setCargo(cargo);
         order.setCarrier(carrier);
+        order.setDateAdded(LocalDate.now());
+        BigDecimal price = order.getPrice();
+        BigDecimal balance = carrier.getBalance();
+        carrier.setBalance(balance.add(price));
 
 
         orderRepository.save(order);

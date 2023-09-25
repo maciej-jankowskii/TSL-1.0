@@ -5,6 +5,8 @@ import com.tslcompany.customer.client.ClientRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -39,6 +41,11 @@ public class CargoService {
 
         Cargo cargo = cargoMapper.map(cargoDto);
         cargo.setClient(client);
+        cargo.setDateAdded(LocalDate.now());
+        BigDecimal balance = client.getBalance();
+        BigDecimal price = cargo.getPrice();
+        client.setBalance(balance.add(price));
+
 
 
         Cargo saved = cargoRepository.save(cargo);

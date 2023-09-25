@@ -10,5 +10,6 @@ public enum OrderStatus {
     ON_THE_WAY_TO_UNLOADING,
     ON_UNLOADING,
     UNLOADED,
-    ENDED;
+    ENDED,
+    CANCELED;
 }

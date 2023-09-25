@@ -7,6 +7,7 @@ import com.tslcompany.details.AddressRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,7 @@ public class CarrierService {
         addressRepository.save(address);
 
         carrier.setAddress(address);
+        carrier.setBalance(BigDecimal.ZERO);
         Carrier saved = carrierRepository.save(carrier);
 
         return carrierMapper.map(saved);

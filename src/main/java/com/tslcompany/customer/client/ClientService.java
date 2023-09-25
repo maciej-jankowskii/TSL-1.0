@@ -6,6 +6,7 @@ import com.tslcompany.details.AddressRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -42,6 +43,7 @@ public class ClientService {
         addressRepository.save(address);
 
         client.setAddress(address);
+        client.setBalance(BigDecimal.ZERO);
         Client saved = clientRepository.save(client);
         return clientMapper.map(saved);
 

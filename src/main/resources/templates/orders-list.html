@@ -32,8 +32,7 @@
       <br>
       <span th:text="${'Status : ' + order.orderStatus}"></span>
       <br>
-<!--      <span th:text="${'Stworzone przez: ' + order.createdBy.id + ' (' + order.createdBy.email + ')'}"></span>-->
-<!--      <br>-->
+
 
       <form th:action="@{/update-order-status}" method="post">
         <input type="hidden" name="orderId" th:value="${order.id}">
@@ -44,6 +43,7 @@
           <option value="ON_UNLOADING">ON_UNLOADING</option>
           <option value="UNLOADED">UNLOADED</option>
           <option value="ENDED">ENDED</option>
+          <option value="CANCELED">CANCELED</option>
         </select>
         <button type="submit">Zmień status</button>
       </form>
