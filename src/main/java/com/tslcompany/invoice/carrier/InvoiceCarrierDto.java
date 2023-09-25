@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 public class InvoiceCarrierDto {
 
     private String invoiceNumber;
-
     private Long orderNumber;
     private Long carrierId;
     private BigDecimal nettoValue;

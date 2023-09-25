@@ -13,7 +13,7 @@ public class InvoiceClientMapper {
         this.cargoRepository = cargoRepository;
     }
 
-    InvoiceClientDto map(InvoiceForClient invoice){
+    InvoiceClientDto map(InvoiceForClient invoice) {
         InvoiceClientDto dto = new InvoiceClientDto();
         dto.setInvoiceNumber(invoice.getInvoiceNumber());
         dto.setCargoId(invoice.getCargo().getId());
@@ -22,7 +22,7 @@ public class InvoiceClientMapper {
         return dto;
     }
 
-    InvoiceForClient map(InvoiceClientDto dto){
+    InvoiceForClient map(InvoiceClientDto dto) {
         InvoiceForClient invoice = new InvoiceForClient();
         invoice.setInvoiceNumber(dto.getInvoiceNumber());
         Cargo cargo = cargoRepository.findById(dto.getCargoId()).orElse(null);

@@ -39,5 +39,4 @@ public class InvoiceCarrierService {
         return invoiceCarrierMapper.map(saved);
     }
 
-
 }

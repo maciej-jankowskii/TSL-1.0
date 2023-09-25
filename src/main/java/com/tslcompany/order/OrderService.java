@@ -31,7 +31,6 @@ public class OrderService {
     private final CargoRepository cargoRepository;
 
 
-
     public OrderService(OrderRepository orderRepository, OrderMapper orderMapper, CargoService cargoService, CarrierService carrierService, UserMapper userMapper, UserService userService, CargoRepository cargoRepository) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
@@ -68,20 +67,22 @@ public class OrderService {
     public List<Order> findAllOrders() {
         return (List<Order>) orderRepository.findAll();
     }
-    public Optional<Order> findById(Long id){
+
+    public Optional<Order> findById(Long id) {
         return orderRepository.findById(id);
     }
 
-    public List<Order> findOrdersByUser(User user){
+    public List<Order> findOrdersByUser(User user) {
         return orderRepository.findByUser(user);
     }
+
     @Transactional
-    public void deleteById(Long id){
+    public void deleteById(Long id) {
         orderRepository.deleteById(id);
 
     }
 
-    public OrderDto changeOrderStatus(Long id, OrderStatus orderStatus){
+    public OrderDto changeOrderStatus(Long id, OrderStatus orderStatus) {
         Order order = orderRepository.findById(id).orElseThrow();
         order.setOrderStatus(orderStatus);
 

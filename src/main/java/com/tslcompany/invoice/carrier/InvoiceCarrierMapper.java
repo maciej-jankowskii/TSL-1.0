@@ -17,7 +17,7 @@ public class InvoiceCarrierMapper {
         this.carrierRepository = carrierRepository;
     }
 
-    public InvoiceCarrierDto map(InvoiceFromCarrier invoice){
+    public InvoiceCarrierDto map(InvoiceFromCarrier invoice) {
         InvoiceCarrierDto dto = new InvoiceCarrierDto();
         dto.setInvoiceNumber(invoice.getInvoiceNumber());
         dto.setCarrierId(invoice.getCarrier().getId());
@@ -27,7 +27,7 @@ public class InvoiceCarrierMapper {
         return dto;
     }
 
-    public InvoiceFromCarrier map(InvoiceCarrierDto invoiceDto){
+    public InvoiceFromCarrier map(InvoiceCarrierDto invoiceDto) {
         InvoiceFromCarrier invoice = new InvoiceFromCarrier();
         invoice.setInvoiceNumber(invoiceDto.getInvoiceNumber());
         Order order = orderRepository.findById(invoiceDto.getOrderNumber()).orElse(null);

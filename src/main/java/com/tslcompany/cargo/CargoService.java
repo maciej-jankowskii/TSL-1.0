@@ -32,8 +32,9 @@ public class CargoService {
     public Optional<Cargo> findCargo(Long id) {
         return cargoRepository.findById(id);
     }
+
     @Transactional
-    public void deleteById(Long id){
+    public void deleteById(Long id) {
         cargoRepository.deleteById(id);
     }
 
@@ -51,7 +52,6 @@ public class CargoService {
         client.setBalance(balance.add(price));
 
         Cargo saved = cargoRepository.save(cargo);
-
 
         return cargoMapper.map(saved);
     }

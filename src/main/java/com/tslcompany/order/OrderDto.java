@@ -15,7 +15,7 @@ public class OrderDto {
     private BigDecimal price;
     private String typeOfTruck;
     private String truckNumbers;
-    private Long userId;  //zmiany
+    private Long userId;
     private String orderStatus;
     private boolean isInvoiced;
 }

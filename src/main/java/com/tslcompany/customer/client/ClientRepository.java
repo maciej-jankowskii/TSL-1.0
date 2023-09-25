@@ -5,7 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface ClientRepository extends CrudRepository<Client, Long> {
-    public Client findByFullName(String fullName);
-
+    Client findByFullName(String fullName);
 
 }

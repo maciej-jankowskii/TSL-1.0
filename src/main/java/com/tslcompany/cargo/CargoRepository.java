@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface CargoRepository extends CrudRepository<Cargo, Long> {
 
     Cargo findById(Log id);
-    void deleteById(Long id);
 
+    void deleteById(Long id);
 
 }

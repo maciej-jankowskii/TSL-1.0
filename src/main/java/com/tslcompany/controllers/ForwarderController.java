@@ -130,8 +130,9 @@ public class ForwarderController {
         orderService.createOrder(orderDto, userName);
         return "redirect:/add-order";
     }
+
     @PostMapping("/update-order-status")
-    public String changeStatusOfOrder(@RequestParam("orderId") Long orderId, @RequestParam("newOrderStatus") OrderStatus newStatus){
+    public String changeStatusOfOrder(@RequestParam("orderId") Long orderId, @RequestParam("newOrderStatus") OrderStatus newStatus) {
         Order order = orderService.findById(orderId).orElseThrow(() -> new NoSuchElementException("Brak zlecenia o takim ID"));
         OrderStatus status = OrderStatus.valueOf(String.valueOf(newStatus));
         orderService.changeOrderStatus(orderId, status);
@@ -159,15 +160,13 @@ public class ForwarderController {
         }
 
 
-
         return "redirect:/order-status-confirmation";
     }
+
     @GetMapping("/order-status-confirmation")
-    public String changeStatusConfirmation(){
+    public String changeStatusConfirmation() {
         return "order-status-confirmation";
     }
-
-
 
 
 }

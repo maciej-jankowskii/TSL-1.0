@@ -48,14 +48,14 @@ public class BookkeepingController {
     }
 
     @GetMapping("/invoices-carrier")
-    public String carrierInvoicesForm(Model model){
+    public String carrierInvoicesForm(Model model) {
         List<InvoiceFromCarrier> invoices = invoiceCarrierService.findAllInvoices();
         model.addAttribute("invoices", invoices);
         return "invoices-from-carrier";
     }
 
     @GetMapping("/add-invoice-carrier")
-    public String newCarrierInvoice(Model model){
+    public String newCarrierInvoice(Model model) {
         List<Order> orders = orderService.findAllOrders();
         List<Carrier> carriers = carrierService.findALlCarriers();
 
@@ -66,20 +66,20 @@ public class BookkeepingController {
     }
 
     @PostMapping("/add-new-invoice-carrier")
-    public String addNewCarrierInvoice(@ModelAttribute("invoiceDto") InvoiceCarrierDto invoiceDto){
+    public String addNewCarrierInvoice(@ModelAttribute("invoiceDto") InvoiceCarrierDto invoiceDto) {
         invoiceCarrierService.addInvoiceFromCarrier(invoiceDto);
         return "redirect:/invoices-carrier";
     }
 
     @GetMapping("/invoices-client")
-    public String clientInvoicesForm(Model model){
+    public String clientInvoicesForm(Model model) {
         List<InvoiceForClient> invoices = invoiceClientService.findAllInvoices();
         model.addAttribute("invoices", invoices);
         return "invoices-for-client";
     }
 
-    @GetMapping ("/add-invoice-client")
-    public String addNewClientInvoice(Model model){
+    @GetMapping("/add-invoice-client")
+    public String addNewClientInvoice(Model model) {
         List<Cargo> allCargos = cargoService.findAllCargos();
         List<Cargo> cargosWithNoInvoice = allCargos.stream().filter(cargo -> cargo.isInvoicedForClient() == false).collect(Collectors.toList());
 
@@ -88,7 +88,7 @@ public class BookkeepingController {
     }
 
     @PostMapping("/add-new-invoice-client")
-    public String addNewClientInvoice(@ModelAttribute("invoiceDto") InvoiceClientDto invoiceDto){
+    public String addNewClientInvoice(@ModelAttribute("invoiceDto") InvoiceClientDto invoiceDto) {
         invoiceClientService.addInvoiceForClient(invoiceDto);
         return "redirect:/invoices-client";
     }

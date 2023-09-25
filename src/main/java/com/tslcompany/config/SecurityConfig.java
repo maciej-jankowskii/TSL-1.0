@@ -56,7 +56,6 @@ public class SecurityConfig {
                         .requestMatchers(mvc.pattern("/delete-forwarders")).hasRole("MANAGEMENT")
                         .requestMatchers(mvc.pattern("/forwarders")).hasRole("MANAGEMENT")
                         .requestMatchers(mvc.pattern("/assign-task-employees")).hasRole("MANAGEMENT")
-//                .requestMatchers(mvc.pattern("/assign-task")).hasRole("MANAGEMENT")
                         .requestMatchers(mvc.pattern("/assign-role")).hasRole("MANAGEMENT")
                         .requestMatchers(mvc.pattern("/home-page")).authenticated()
 

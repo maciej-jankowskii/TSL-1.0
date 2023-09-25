@@ -21,11 +21,12 @@ public class InvoiceClientService {
         this.cargoRepository = cargoRepository;
     }
 
-    public List<InvoiceForClient> findAllInvoices(){
+    public List<InvoiceForClient> findAllInvoices() {
         return (List<InvoiceForClient>) invoiceClientRepository.findAll();
     }
+
     @Transactional
-    public InvoiceClientDto addInvoiceForClient(InvoiceClientDto invoiceDto){
+    public InvoiceClientDto addInvoiceForClient(InvoiceClientDto invoiceDto) {
         InvoiceForClient invoice = invoiceClientMapper.map(invoiceDto);
         Long cargoId = invoice.getCargo().getId();
         Cargo cargo = cargoRepository.findById(cargoId).orElseThrow(() -> new NoSuchElementException("Brak ładunku"));
