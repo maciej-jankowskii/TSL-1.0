@@ -57,5 +57,15 @@
     <changeSet id="005" author="maciej-jankowski">
         <dropColumn tableName="cargo" columnName="has_order"/>
     </changeSet>
+    <changeSet id="006" author="maciej-jankowski">
+        <addColumn tableName="cargo">
+            <column name="invoiced_for_client" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="007" author="maciej-jankowski">
+        <sql>UPDATE cargo SET invoiced_for_client = false</sql>
+    </changeSet>
 
 </databaseChangeLog>

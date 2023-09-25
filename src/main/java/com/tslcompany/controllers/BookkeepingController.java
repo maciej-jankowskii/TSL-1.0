@@ -1,10 +1,16 @@
 package com.tslcompany.controllers;
 
+import com.tslcompany.cargo.Cargo;
+import com.tslcompany.cargo.CargoRepository;
+import com.tslcompany.cargo.CargoService;
 import com.tslcompany.customer.carrier.Carrier;
 import com.tslcompany.customer.carrier.CarrierService;
 import com.tslcompany.invoice.carrier.InvoiceCarrierDto;
 import com.tslcompany.invoice.carrier.InvoiceCarrierService;
 import com.tslcompany.invoice.carrier.InvoiceFromCarrier;
+import com.tslcompany.invoice.client.InvoiceClientDto;
+import com.tslcompany.invoice.client.InvoiceClientService;
+import com.tslcompany.invoice.client.InvoiceForClient;
 import com.tslcompany.order.Order;
 import com.tslcompany.order.OrderService;
 import org.springframework.stereotype.Controller;
@@ -20,13 +26,20 @@ import java.util.stream.Collectors;
 public class BookkeepingController {
 
     private final InvoiceCarrierService invoiceCarrierService;
+    private final InvoiceClientService invoiceClientService;
     private final OrderService orderService;
     private final CarrierService carrierService;
+    private final CargoRepository cargoRepository;
+    private final CargoService cargoService;
 
-    public BookkeepingController(InvoiceCarrierService invoiceCarrierService, OrderService orderService, CarrierService carrierService) {
+
+    public BookkeepingController(InvoiceCarrierService invoiceCarrierService, InvoiceClientService invoiceClientService, OrderService orderService, CarrierService carrierService, CargoRepository cargoRepository, CargoService cargoService) {
         this.invoiceCarrierService = invoiceCarrierService;
+        this.invoiceClientService = invoiceClientService;
         this.orderService = orderService;
         this.carrierService = carrierService;
+        this.cargoRepository = cargoRepository;
+        this.cargoService = cargoService;
     }
 
     @GetMapping("/bookkeeping")
@@ -57,4 +70,28 @@ public class BookkeepingController {
         invoiceCarrierService.addInvoiceFromCarrier(invoiceDto);
         return "redirect:/invoices-carrier";
     }
+
+    @GetMapping("/invoices-client")
+    public String clientInvoicesForm(Model model){
+        List<InvoiceForClient> invoices = invoiceClientService.findAllInvoices();
+        model.addAttribute("invoices", invoices);
+        return "invoices-for-client";
+    }
+
+    @GetMapping ("/add-invoice-client")
+    public String addNewClientInvoice(Model model){
+        List<Cargo> allCargos = cargoService.findAllCargos();
+        List<Cargo> cargosWithNoInvoice = allCargos.stream().filter(cargo -> cargo.isInvoicedForClient() == false).collect(Collectors.toList());
+
+        model.addAttribute("cargosNoInvoice", cargosWithNoInvoice);
+        return "new-invoice-client";
+    }
+
+    @PostMapping("/add-new-invoice-client")
+    public String addNewClientInvoice(@ModelAttribute("invoiceDto") InvoiceClientDto invoiceDto){
+        invoiceClientService.addInvoiceForClient(invoiceDto);
+        return "redirect:/invoices-client";
+    }
+
+
 }

@@ -22,4 +22,5 @@ public class CargoDto {
     private String goods;
     private String description;
     private boolean assignedToOrder;
+    private boolean invoicedForClient;
 }

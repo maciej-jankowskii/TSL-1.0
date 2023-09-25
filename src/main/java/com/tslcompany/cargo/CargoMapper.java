@@ -16,6 +16,7 @@ public class CargoMapper {
         dto.setGoods(cargo.getGoods());
         dto.setDescription(cargo.getDescription());
         dto.setAssignedToOrder(cargo.isAssignedToOrder());
+        dto.setInvoicedForClient(cargo.isInvoicedForClient());
         return dto;
     }
 

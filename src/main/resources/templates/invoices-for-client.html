@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+  <title>Panel Administratora - TSL COMPANY</title>
+</head>
+<body>
+<div class="header">
+  <div class="container">
+    <div class="app-name">Panel Administratora</div>
+    <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
+  </div>
+</div>
+<div class="container">
+  <div class="button-group">
+    <a href="#" th:href="@{/add-invoice-client}" class="panel-button-forwarder">Wprowadź nową fakturę</a>
+  </div>
+</div>
+<div class="container">
+  <h2>Lista faktur od przewoźników:</h2>
+  <table class="invoice-table">
+    <thead>
+    <tr>
+      <th>Numer faktury</th>
+      <th>Do zlecenia:</th>
+      <th>Klient</th>
+      <th>Netto</th>
+      <th>Brutto</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="invoice : ${invoices}">
+      <td th:text="${invoice.invoiceNumber}"></td>
+      <td th:text="${invoice.cargo.id}"></td>
+      <td th:text="${invoice.cargo.client.fullName}"></td>
+      <td th:text="${invoice.nettoValue}"></td>
+      <td th:text="${invoice.bruttoValue}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container">
+  <a th:href="@{/bookkeeping}" class="panel-button-forwarder">Powrót do panelu głównego</a>
+</div>
+</body>
+</html>

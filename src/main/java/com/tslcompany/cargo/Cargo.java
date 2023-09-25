@@ -31,4 +31,5 @@ public class Cargo {
     private String goods;
     private String description;
     private boolean assignedToOrder;
+    private boolean invoicedForClient;
 }

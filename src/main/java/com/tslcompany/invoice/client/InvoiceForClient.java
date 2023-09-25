@@ -1,4 +1,4 @@
-package com.tslcompany.invoice;
+package com.tslcompany.invoice.client;
 
 import com.tslcompany.cargo.Cargo;
 import jakarta.persistence.*;
@@ -23,4 +23,5 @@ public class InvoiceForClient {
     private Cargo cargo;
     private BigDecimal nettoValue;
     private BigDecimal bruttoValue;
+
 }
