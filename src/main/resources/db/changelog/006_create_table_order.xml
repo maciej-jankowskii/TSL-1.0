@@ -41,5 +41,10 @@
             <column name="date_added" type="DATE"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="003" author="maciej-jankowski">
+        <addColumn tableName="order_to_send">
+            <column name="user_id" type="BIGINT"></column>
+        </addColumn>
+    </changeSet>
 
 </databaseChangeLog>

@@ -1,6 +1,7 @@
 package com.tslcompany.order;
 
 
+import com.tslcompany.user.UserDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,5 +15,6 @@ public class OrderDto {
     private BigDecimal price;
     private String typeOfTruck;
     private String truckNumbers;
+    private Long userId;  //zmiany
     private String orderStatus;
 }

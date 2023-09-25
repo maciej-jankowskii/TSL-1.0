@@ -41,11 +41,13 @@ public class OrderService {
     }
 
     @Transactional
-    public OrderDto createOrder(OrderDto orderDto) {
+    public OrderDto createOrder(OrderDto orderDto, String username) {
+        User user = userService.findUser(username).orElseThrow(() -> new NoSuchElementException("Brak użytkownika"));
         Order order = orderMapper.map(orderDto);
         Cargo cargo = cargoService.findCargo(orderDto.getCargoId()).orElseThrow(() -> new NoSuchElementException());
         Carrier carrier = carrierService.findById(orderDto.getCarrierId()).orElseThrow(() -> new NoSuchElementException());
 
+        order.setUser(user);
 
         order.setCargo(cargo);
         order.setCarrier(carrier);

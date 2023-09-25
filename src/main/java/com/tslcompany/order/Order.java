@@ -35,5 +35,8 @@ public class Order {
     private Truck typeOfTruck;
     private String truckNumbers;
     @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;  //zmiany
     private OrderStatus orderStatus;
 }

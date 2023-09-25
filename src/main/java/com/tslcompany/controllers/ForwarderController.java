@@ -15,7 +15,9 @@ import com.tslcompany.details.OrderStatus;
 import com.tslcompany.order.Order;
 import com.tslcompany.order.OrderDto;
 import com.tslcompany.order.OrderService;
+import com.tslcompany.user.User;
 import com.tslcompany.user.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -116,8 +118,11 @@ public class ForwarderController {
     }
 
     @PostMapping("/save-order")
-    public String saveOrder(@ModelAttribute("orderDto") OrderDto orderDto) {
-        orderService.createOrder(orderDto);
+    public String saveOrder(@ModelAttribute("orderDto") OrderDto orderDto, Authentication authentication) {
+        String userName = authentication.getName();
+        System.out.println(userName);
+
+        orderService.createOrder(orderDto, userName);
         return "redirect:/add-order";
     }
     @PostMapping("/update-order-status")
