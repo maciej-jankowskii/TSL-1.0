@@ -27,4 +27,14 @@
                                  referencedColumnNames="id"/>
 
     </changeSet>
+    <changeSet id="002" author="maciej-jankowski">
+        <addColumn tableName="invoice_from_carrier">
+            <column name="carrier_id" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="invoice_from_carrier" baseColumnNames="carrier_id" constraintName="fk_invoice_carrier"
+                                 referencedTableName="carrier"
+                                 referencedColumnNames="id"/>
+    </changeSet>
 </databaseChangeLog>

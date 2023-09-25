@@ -1,5 +1,6 @@
-package com.tslcompany.invoice;
+package com.tslcompany.invoice.carrier;
 
+import com.tslcompany.customer.carrier.Carrier;
 import com.tslcompany.order.Order;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,6 +22,9 @@ public class InvoiceFromCarrier {
     @OneToOne
     @JoinColumn(name = "order_id")
     private Order order;
+    @ManyToOne
+    @JoinColumn(name="carrier_id")
+    private Carrier carrier;
     private BigDecimal nettoValue;
     private BigDecimal bruttoValue;
 }

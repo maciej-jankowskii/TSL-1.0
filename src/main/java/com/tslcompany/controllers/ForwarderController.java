@@ -119,7 +119,6 @@ public class ForwarderController {
     public String saveOrder(@ModelAttribute("orderDto") OrderDto orderDto) {
         orderService.createOrder(orderDto);
         return "redirect:/add-order";
-
     }
     @PostMapping("/update-order-status")
     public String changeStatusOfOrder(@RequestParam("orderId") Long orderId, @RequestParam("newOrderStatus") OrderStatus newStatus){

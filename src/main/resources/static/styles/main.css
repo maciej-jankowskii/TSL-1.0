@@ -111,6 +111,30 @@ body {
     background-color: darkgreen;
 }
 
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.invoice-table th, .invoice-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.invoice-table th {
+    background-color: #f2f2f2;
+}
+
+.invoice-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.invoice-table tr:hover {
+    background-color: #ddd;
+}
+
 .registration-form {
     max-width: 400px;
     margin: 0 auto;

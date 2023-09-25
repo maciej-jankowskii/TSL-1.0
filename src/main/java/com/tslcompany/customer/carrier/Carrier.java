@@ -31,4 +31,6 @@ public class Carrier {
     private BigDecimal balance;
     @OneToMany(mappedBy = "carrier")
     private List<Order> orders = new ArrayList<>();
+
+
 }
