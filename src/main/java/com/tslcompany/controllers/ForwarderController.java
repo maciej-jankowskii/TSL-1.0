@@ -5,16 +5,16 @@ import com.tslcompany.cargo.CargoDto;
 import com.tslcompany.cargo.CargoService;
 import com.tslcompany.customer.carrier.Carrier;
 import com.tslcompany.customer.carrier.CarrierDto;
+import com.tslcompany.customer.carrier.CarrierRepository;
 import com.tslcompany.customer.carrier.CarrierService;
 import com.tslcompany.customer.client.Client;
 import com.tslcompany.customer.client.ClientDto;
+import com.tslcompany.customer.client.ClientRepository;
 import com.tslcompany.customer.client.ClientService;
 import com.tslcompany.details.OrderStatus;
 import com.tslcompany.order.Order;
 import com.tslcompany.order.OrderDto;
 import com.tslcompany.order.OrderService;
-import com.tslcompany.user.User;
-import com.tslcompany.user.UserDto;
 import com.tslcompany.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.security.Principal;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -36,13 +36,17 @@ public class ForwarderController {
     private final CargoService cargoService;
     private final OrderService orderService;
     private final UserService userService;
+    private final ClientRepository clientRepository;
+    private final CarrierRepository carrierRepository;
 
-    public ForwarderController(ClientService clientService, CarrierService carrierService, CargoService cargoService, OrderService orderService, UserService userService) {
+    public ForwarderController(ClientService clientService, CarrierService carrierService, CargoService cargoService, OrderService orderService, UserService userService, ClientRepository clientRepository, CarrierRepository carrierRepository) {
         this.clientService = clientService;
         this.carrierService = carrierService;
         this.cargoService = cargoService;
         this.orderService = orderService;
         this.userService = userService;
+        this.clientRepository = clientRepository;
+        this.carrierRepository = carrierRepository;
     }
 
     @GetMapping("/forwarder")
@@ -119,8 +123,33 @@ public class ForwarderController {
     }
     @PostMapping("/update-order-status")
     public String changeStatusOfOrder(@RequestParam("orderId") Long orderId, @RequestParam("newOrderStatus") OrderStatus newStatus){
+        Order order = orderService.findById(orderId).orElseThrow(() -> new NoSuchElementException("Brak zlecenia o takim ID"));
         OrderStatus status = OrderStatus.valueOf(String.valueOf(newStatus));
         orderService.changeOrderStatus(orderId, status);
+
+        if (OrderStatus.CANCELED.equals(newStatus)) {
+            Cargo cargo = order.getCargo();
+            Client client = cargo.getClient();
+            Carrier carrier = order.getCarrier();
+
+            BigDecimal price = order.getPrice();
+            BigDecimal cargoPrice = order.getCargo().getPrice();
+
+            BigDecimal clientBalance = client.getBalance();
+            BigDecimal carrierBalance = carrier.getBalance();
+
+            client.setBalance(clientBalance.subtract(cargoPrice));
+            carrier.setBalance(carrierBalance.subtract(price));
+
+            orderService.deleteById(orderId);
+            cargoService.deleteById(cargo.getId());
+
+
+            clientRepository.save(client);
+            carrierRepository.save(carrier);
+        }
+
+
 
         return "redirect:/order-status-confirmation";
     }

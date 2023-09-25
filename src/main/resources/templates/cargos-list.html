@@ -19,6 +19,8 @@
     <li th:each="cargo: ${allCargos}">
       <span th:text="${'Numer ładunku od klienta: ' + cargo.cargoNumberFromCustomer}"></span>
       <br>
+      <span th:text="${'Klient zlecający : ' + cargo.getClient().fullName}"></span>
+      <br>
       <span th:text="${'Cena: ' + cargo.price}"></span>
       <br>
       <span th:text="${'Data dodania: ' + cargo.dateAdded}"></span>

@@ -32,6 +32,10 @@ public class CargoService {
     public Optional<Cargo> findCargo(Long id) {
         return cargoRepository.findById(id);
     }
+    @Transactional
+    public void deleteById(Long id){
+        cargoRepository.deleteById(id);
+    }
 
 
     @Transactional

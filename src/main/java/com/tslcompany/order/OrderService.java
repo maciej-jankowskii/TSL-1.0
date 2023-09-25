@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -61,6 +62,14 @@ public class OrderService {
 
     public List<Order> findAllOrders() {
         return (List<Order>) orderRepository.findAll();
+    }
+    public Optional<Order> findById(Long id){
+        return orderRepository.findById(id);
+    }
+    @Transactional
+    public void deleteById(Long id){
+        orderRepository.deleteById(id);
+
     }
 
     public OrderDto changeOrderStatus(Long id, OrderStatus orderStatus){
