@@ -9,7 +9,7 @@
 <body>
 <div class="header">
     <div class="container">
-        <div class="app-name">Panel Administratora</div>
+        <div class="app-name">Panel Księgowości</div>
         <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
     </div>
 </div>
@@ -28,6 +28,8 @@
             <th>Przewoźnik</th>
             <th>Netto</th>
             <th>Brutto</th>
+            <th>Akcja</th>
+            <th>Opłacona</th>
         </tr>
         </thead>
         <tbody>
@@ -37,6 +39,14 @@
                 <td th:text="${invoice.carrier.fullName}"></td>
                 <td th:text="${invoice.nettoValue}"></td>
                 <td th:text="${invoice.bruttoValue}"></td>
+                <td>
+                    <form th:if="${not invoice.paid}" th:action="@{/pay-invoice-carrier}" th:method="post">
+                        <input type="hidden" name="invoiceId" th:value="${invoice.id}" />
+                        <button type="submit">Opłać</button>
+                    </form>
+                    <a>Edytuj</a>
+                </td>
+                <td th:text="${invoice.paid ? 'Tak' : 'Nie'}"></td>
             </tr>
         </tbody>
     </table>

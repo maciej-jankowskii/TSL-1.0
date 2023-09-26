@@ -15,9 +15,7 @@ import com.tslcompany.order.Order;
 import com.tslcompany.order.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -70,6 +68,14 @@ public class BookkeepingController {
         invoiceCarrierService.addInvoiceFromCarrier(invoiceDto);
         return "redirect:/invoices-carrier";
     }
+
+
+    @PostMapping("/pay-invoice-carrier")
+    public String payInvoiceCarrier(@RequestParam("invoiceId") Long invoiceId){
+        invoiceCarrierService.payInvoice(invoiceId);
+        return "redirect:/invoices-carrier";
+    }
+
 
     @GetMapping("/invoices-client")
     public String clientInvoicesForm(Model model) {

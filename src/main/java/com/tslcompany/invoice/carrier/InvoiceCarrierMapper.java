@@ -24,6 +24,7 @@ public class InvoiceCarrierMapper {
         dto.setOrderNumber(invoice.getOrder().getId());
         dto.setNettoValue(invoice.getNettoValue());
         dto.setBruttoValue(invoice.getBruttoValue());
+        dto.setPaid(invoice.isPaid());
         return dto;
     }
 

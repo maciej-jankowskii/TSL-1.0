@@ -17,4 +17,5 @@ public class InvoiceCarrierDto {
     private Long carrierId;
     private BigDecimal nettoValue;
     private BigDecimal bruttoValue;
+    private boolean isPaid;
 }
