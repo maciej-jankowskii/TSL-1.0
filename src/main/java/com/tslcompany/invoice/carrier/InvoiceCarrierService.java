@@ -47,7 +47,6 @@ public class InvoiceCarrierService {
     @Transactional
     public void payInvoice(Long invoiceId){
         InvoiceFromCarrier invoice = invoiceCarrierRepository.findById(invoiceId).orElseThrow(() -> new NoSuchElementException("Brak faktury"));
-        System.out.println(invoice.getInvoiceNumber().toString());
         if (invoice.isPaid()){
             throw new IllegalStateException("Faktura jest już opłacona");
         } else {

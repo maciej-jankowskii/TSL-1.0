@@ -19,6 +19,7 @@ public class InvoiceClientMapper {
         dto.setCargoId(invoice.getCargo().getId());
         dto.setNettoValue(invoice.getNettoValue());
         dto.setBruttoValue(invoice.getBruttoValue());
+        dto.setPaid(invoice.isPaid());
         return dto;
     }
 

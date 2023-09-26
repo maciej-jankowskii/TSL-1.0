@@ -13,4 +13,5 @@ public class InvoiceClientDto {
     private Long cargoId;
     private BigDecimal nettoValue;
     private BigDecimal bruttoValue;
+    private boolean isPaid;
 }

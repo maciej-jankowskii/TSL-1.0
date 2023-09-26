@@ -76,6 +76,12 @@ public class BookkeepingController {
         return "redirect:/invoices-carrier";
     }
 
+    @PostMapping("/pay-invoice-client")
+    public String payInvoiceClient(@RequestParam("invoiceId") Long invoiceId){
+        invoiceClientService.payInvoice(invoiceId);
+        return "redirect:/invoices-client";
+    }
+
 
     @GetMapping("/invoices-client")
     public String clientInvoicesForm(Model model) {

@@ -23,5 +23,6 @@ public class InvoiceForClient {
     private Cargo cargo;
     private BigDecimal nettoValue;
     private BigDecimal bruttoValue;
+    private boolean isPaid;
 
 }
