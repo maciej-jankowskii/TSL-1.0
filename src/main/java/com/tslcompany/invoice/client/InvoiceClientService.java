@@ -31,6 +31,15 @@ public class InvoiceClientService {
         return (List<InvoiceForClient>) invoiceClientRepository.findAll();
     }
 
+    public List<InvoiceForClient> filterInvoices(Boolean isPaid){
+        List<InvoiceForClient> allInvoices = (List<InvoiceForClient>) invoiceClientRepository.findAll();
+        if (isPaid){
+            return allInvoices.stream().filter(InvoiceForClient::isPaid).toList();
+        } else {
+            return allInvoices.stream().filter(invoice -> !invoice.isPaid()).toList();
+        }
+    }
+
     @Transactional
     public InvoiceClientDto addInvoiceForClient(InvoiceClientDto invoiceDto) {
         InvoiceForClient invoice = invoiceClientMapper.map(invoiceDto);

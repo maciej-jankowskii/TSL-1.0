@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
-  <title>Panel Administratora - TSL COMPANY</title>
+  <title>Odfiltrowane Faktury - TSL COMPANY</title>
 </head>
 <body>
 <div class="header">
@@ -14,20 +14,9 @@
   </div>
 </div>
 <div class="container">
-  <div class="button-group">
-    <a href="#" th:href="@{/add-invoice-client}" class="panel-button-forwarder">Wprowadź nową fakturę</a>
-  </div>
 </div>
 <div class="container">
-  <h2>Lista faktur dla klientów:</h2>
-  <div class="filter-form">
-    <form th:action="@{/filter-invoices-client}" th:method="post">
-      <label for="isPaid">Pokaż nieopłacone faktury:</label>
-      <input type="checkbox" id="isPaid" name="isPaid" value="false">
-      <button type="submit">Filtruj</button>
-    </form>
-  </div>
-  <br><br>
+  <h2>Lista nieopłaconych faktur od klientów:</h2>
   <table class="invoice-table">
     <thead>
     <tr>

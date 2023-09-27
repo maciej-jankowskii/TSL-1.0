@@ -72,11 +72,19 @@ public class BookkeepingController {
     }
 
     @PostMapping("/filter-invoices-carrier")
-    public String showFilterInvoices(@RequestParam(name = "isPaid") String isPaid, Model model){
+    public String showFilterCarrierInvoices(@RequestParam(name = "isPaid") String isPaid, Model model){
         Boolean isPaidBoolean = "true".equals(isPaid);
         List<InvoiceFromCarrier> filteredInvoices = invoiceCarrierService.filterInvoices(isPaidBoolean);
         model.addAttribute("invoices", filteredInvoices);
-        return "filtered-invoices-list";
+        return "filtered-invoices-carrier-list";
+    }
+
+    @PostMapping("/filter-invoices-client")
+    public String showFilterClientInvoices(@RequestParam(name = "isPaid") String isPaid, Model model){
+        Boolean isPaidBoolean = "true".equals(isPaid);
+        List<InvoiceForClient> filteredInvoices = invoiceClientService.filterInvoices(isPaidBoolean);
+        model.addAttribute("invoices", filteredInvoices);
+        return "filtered-invoices-client-list";
     }
 
 
