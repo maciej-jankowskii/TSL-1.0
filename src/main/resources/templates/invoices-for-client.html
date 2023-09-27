@@ -28,6 +28,7 @@
       <th>Klient</th>
       <th>Netto</th>
       <th>Brutto</th>
+      <th>Termin płatności</th>
       <th>Akcja</th>
       <th>Opłacona</th>
     </tr>
@@ -39,12 +40,13 @@
       <td th:text="${invoice.cargo.client.fullName}"></td>
       <td th:text="${invoice.nettoValue}"></td>
       <td th:text="${invoice.bruttoValue}"></td>
+      <td th:text="${invoice.dueDate}"></td>
       <td>
         <form th:if="${not invoice.paid}" th:action="@{/pay-invoice-client}" th:method="post">
           <input type="hidden" name="invoiceId" th:value="${invoice.id}" />
           <button type="submit">Oznacz jako zapłacona</button>
         </form>
-        <a>Edytuj</a>
+        <a>Wyślij ponaglenie</a>
       </td>
       <td th:text="${invoice.paid ? 'Tak' : 'Nie'}"></td>
     </tr>

@@ -45,4 +45,10 @@
     <changeSet id="004" author="maciej-jankowski">
         <sql>UPDATE invoice_from_carrier SET is_paid = false</sql>
     </changeSet>
+    <changeSet id="005" author="maciej-jankowski">
+        <addColumn tableName="invoice_from_carrier">
+            <column name="invoice_date" type="DATE"/>
+            <column name="due_date" type="DATE"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

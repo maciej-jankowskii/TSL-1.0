@@ -16,6 +16,8 @@ public class InvoiceClientMapper {
     InvoiceClientDto map(InvoiceForClient invoice) {
         InvoiceClientDto dto = new InvoiceClientDto();
         dto.setInvoiceNumber(invoice.getInvoiceNumber());
+        dto.setInvoiceDate(invoice.getInvoiceDate());
+        dto.setDueDate(invoice.getDueDate());
         dto.setCargoId(invoice.getCargo().getId());
         dto.setNettoValue(invoice.getNettoValue());
         dto.setBruttoValue(invoice.getBruttoValue());

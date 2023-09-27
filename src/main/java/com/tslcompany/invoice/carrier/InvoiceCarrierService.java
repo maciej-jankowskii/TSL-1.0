@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -35,10 +37,24 @@ public class InvoiceCarrierService {
     @Transactional
     public InvoiceCarrierDto addInvoiceFromCarrier(InvoiceCarrierDto invoiceCarrierDto){
         InvoiceFromCarrier invoice = invoiceCarrierMapper.map(invoiceCarrierDto);
+        LocalDate currentDate = LocalDate.now();
+        invoice.setInvoiceDate(currentDate);
+
+
+
         Long orderId = invoice.getOrder().getId();
         Order order = orderService.findById(orderId).orElseThrow(() -> new NoSuchElementException("Brak takiego zlecenia"));
         order.setInvoiced(true);
         orderRepository.save(order);
+
+
+        Carrier carrier = invoice.getCarrier();
+        if (carrier != null){
+            Integer termOfPayment = carrier.getTermOfPayment();
+            LocalDate dueDate = currentDate.plusDays(termOfPayment);
+            invoice.setDueDate(dueDate);
+
+        }
 
         InvoiceFromCarrier saved = invoiceCarrierRepository.save(invoice);
         return invoiceCarrierMapper.map(saved);

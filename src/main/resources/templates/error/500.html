@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error Page</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    .error-container {
+      text-align: center;
+      margin: 10% auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+    }
+
+    h1 {
+      color: #e74c3c;
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #3498db;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="error-container">
+  <h1>500 - ERROR</h1>
+  <p>Przepraszamy, coś poszło nie tak.</p>
+  <p><a th:href="@{/}">Powrót do strony głównej</a></p>
+</div>
+</body>
+</html>

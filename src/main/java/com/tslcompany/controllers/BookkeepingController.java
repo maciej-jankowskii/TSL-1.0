@@ -57,9 +57,11 @@ public class BookkeepingController {
         List<Order> orders = orderService.findAllOrders();
         List<Carrier> carriers = carrierService.findALlCarriers();
 
+
         List<Order> noInvoicedOrders = orders.stream().filter(order -> order.isInvoiced() == false).collect(Collectors.toList());
         model.addAttribute("carriers", carriers);
         model.addAttribute("orders", noInvoicedOrders);
+
         return "new-invoice-carrier";
     }
 

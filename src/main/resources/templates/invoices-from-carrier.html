@@ -28,8 +28,10 @@
             <th>Przewoźnik</th>
             <th>Netto</th>
             <th>Brutto</th>
+            <th>Termin płatności</th>
             <th>Akcja</th>
             <th>Opłacona</th>
+
         </tr>
         </thead>
         <tbody>
@@ -39,12 +41,12 @@
                 <td th:text="${invoice.carrier.fullName}"></td>
                 <td th:text="${invoice.nettoValue}"></td>
                 <td th:text="${invoice.bruttoValue}"></td>
+                <td th:text="${invoice.dueDate}"></td>
                 <td>
                     <form th:if="${not invoice.paid}" th:action="@{/pay-invoice-carrier}" th:method="post">
                         <input type="hidden" name="invoiceId" th:value="${invoice.id}" />
                         <button type="submit">Opłać</button>
                     </form>
-                    <a>Edytuj</a>
                 </td>
                 <td th:text="${invoice.paid ? 'Tak' : 'Nie'}"></td>
             </tr>

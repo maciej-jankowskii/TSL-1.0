@@ -20,6 +20,8 @@ public class InvoiceCarrierMapper {
     public InvoiceCarrierDto map(InvoiceFromCarrier invoice) {
         InvoiceCarrierDto dto = new InvoiceCarrierDto();
         dto.setInvoiceNumber(invoice.getInvoiceNumber());
+        dto.setInvoiceDate(invoice.getInvoiceDate());
+        dto.setDueDate(invoice.getDueDate());
         dto.setCarrierId(invoice.getCarrier().getId());
         dto.setOrderNumber(invoice.getOrder().getId());
         dto.setNettoValue(invoice.getNettoValue());

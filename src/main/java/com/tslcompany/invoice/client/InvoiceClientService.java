@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -33,6 +34,12 @@ public class InvoiceClientService {
     @Transactional
     public InvoiceClientDto addInvoiceForClient(InvoiceClientDto invoiceDto) {
         InvoiceForClient invoice = invoiceClientMapper.map(invoiceDto);
+        LocalDate currentDate = LocalDate.now();
+        invoice.setInvoiceDate(currentDate);
+        Integer termOfPayment = invoice.getCargo().getClient().getTermOfPayment();
+        invoice.setDueDate(currentDate.plusDays(termOfPayment));
+        invoiceClientRepository.save(invoice);
+
         Long cargoId = invoice.getCargo().getId();
         Cargo cargo = cargoRepository.findById(cargoId).orElseThrow(() -> new NoSuchElementException("Brak ładunku"));
         cargo.setInvoicedForClient(true);
