@@ -58,11 +58,8 @@ public class BookkeepingController {
 
     @GetMapping("/add-invoice-carrier")
     public String newCarrierInvoice(Model model) {
-        List<Order> orders = orderService.findAllOrders();
         List<Carrier> carriers = carrierService.findALlCarriers();
-
-
-        List<Order> noInvoicedOrders = orders.stream().filter(order -> order.isInvoiced() == false).collect(Collectors.toList());
+        List<Order> noInvoicedOrders = orderService.findAllOrdersWithNoInvoice();
         model.addAttribute("carriers", carriers);
         model.addAttribute("orders", noInvoicedOrders);
 
@@ -76,7 +73,7 @@ public class BookkeepingController {
     }
 
     @PostMapping("/filter-invoices-carrier")
-    public String showFilterCarrierInvoices(@RequestParam(name = "isPaid") String isPaid, Model model){
+    public String showFilterCarrierInvoices(@RequestParam(name = "isPaid") String isPaid, Model model) {
         Boolean isPaidBoolean = "true".equals(isPaid);
         List<InvoiceFromCarrier> filteredInvoices = invoiceCarrierService.filterInvoices(isPaidBoolean);
         model.addAttribute("invoices", filteredInvoices);
@@ -84,7 +81,7 @@ public class BookkeepingController {
     }
 
     @PostMapping("/filter-invoices-client")
-    public String showFilterClientInvoices(@RequestParam(name = "isPaid") String isPaid, Model model){
+    public String showFilterClientInvoices(@RequestParam(name = "isPaid") String isPaid, Model model) {
         Boolean isPaidBoolean = "true".equals(isPaid);
         List<InvoiceForClient> filteredInvoices = invoiceClientService.filterInvoices(isPaidBoolean);
         model.addAttribute("invoices", filteredInvoices);
@@ -93,13 +90,13 @@ public class BookkeepingController {
 
 
     @PostMapping("/pay-invoice-carrier")
-    public String payInvoiceCarrier(@RequestParam("invoiceId") Long invoiceId){
+    public String payInvoiceCarrier(@RequestParam("invoiceId") Long invoiceId) {
         invoiceCarrierService.payInvoice(invoiceId);
         return "redirect:/invoices-carrier";
     }
 
     @PostMapping("/pay-invoice-client")
-    public String payInvoiceClient(@RequestParam("invoiceId") Long invoiceId){
+    public String payInvoiceClient(@RequestParam("invoiceId") Long invoiceId) {
         invoiceClientService.payInvoice(invoiceId);
         return "redirect:/invoices-client";
     }
@@ -114,9 +111,7 @@ public class BookkeepingController {
 
     @GetMapping("/add-invoice-client")
     public String addNewClientInvoice(Model model) {
-        List<Cargo> allCargos = cargoService.findAllCargos();
-        List<Cargo> cargosWithNoInvoice = allCargos.stream().filter(cargo -> cargo.isInvoicedForClient() == false).collect(Collectors.toList());
-
+        List<Cargo> cargosWithNoInvoice = cargoService.findCargosWithoutClientInvoice();
         model.addAttribute("cargosNoInvoice", cargosWithNoInvoice);
         return "new-invoice-client";
     }
@@ -128,7 +123,7 @@ public class BookkeepingController {
     }
 
     @GetMapping("/forwarders-margin")
-    public String forwardersMarginForm(Model model){
+    public String forwardersMarginForm(Model model) {
         List<ForwarderDto> allForwarders = forwarderService.findAllForwarders();
         model.addAttribute("allForwarders", allForwarders);
         return "forwarders-margin";

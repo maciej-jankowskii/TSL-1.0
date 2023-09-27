@@ -20,7 +20,7 @@ public class ForwarderService {
         this.orderRepository = orderRepository;
     }
 
-    public List<ForwarderDto> findAllForwarders(){
+    public List<ForwarderDto> findAllForwarders() {
         List<User> forwarders = userRepository.findAllUsersByRoles_Name("FORWARDER");
         List<ForwarderDto> forwardersDto = new ArrayList<>();
 
@@ -37,7 +37,7 @@ public class ForwarderService {
         return forwardersDto;
     }
 
-    private BigDecimal calculateMargin(User forwarder){
+    private BigDecimal calculateMargin(User forwarder) {
         List<Order> orders = orderRepository.findByUser(forwarder);
         BigDecimal totalMargin = BigDecimal.ZERO;
 

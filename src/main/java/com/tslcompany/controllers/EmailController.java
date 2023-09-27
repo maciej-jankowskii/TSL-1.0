@@ -16,18 +16,19 @@ public class EmailController {
     public EmailController(EmailService emailService) {
         this.emailService = emailService;
     }
+
     @GetMapping("/send-reminder")
-    public String reminderForm(Model model){
+    public String reminderForm(Model model) {
         model.addAttribute("emailForm", new EmailForm());
         return "reminder-form";
     }
 
     @PostMapping("/send-email")
-    public String sendReminder(@ModelAttribute("emailForm") EmailForm emailForm){
+    public String sendReminder(@ModelAttribute("emailForm") EmailForm emailForm) {
         String recipientAddress = emailForm.getRecipientAddress();
         String emailSubject = emailForm.getEmailSubject();
         String emailText = emailForm.getEmailText();
-        emailService.sendEmail(recipientAddress, emailSubject,emailText);
+        emailService.sendEmail(recipientAddress, emailSubject, emailText);
         return "success-page";
     }
 }

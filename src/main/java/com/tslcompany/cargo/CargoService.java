@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CargoService {
@@ -27,6 +28,13 @@ public class CargoService {
     public List<Cargo> findAllCargos() {
         return (List<Cargo>) cargoRepository.findAll();
 
+    }
+
+    public List<Cargo> findCargosWithoutClientInvoice() {
+        List<Cargo> allCargos = (List<Cargo>) cargoRepository.findAll();
+        return allCargos.stream()
+                .filter(cargo -> Boolean.FALSE.equals(cargo.isInvoicedForClient()))
+                .collect(Collectors.toList());
     }
 
     public Optional<Cargo> findCargo(Long id) {

@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -66,6 +67,11 @@ public class OrderService {
 
     public List<Order> findAllOrders() {
         return (List<Order>) orderRepository.findAll();
+    }
+
+    public List<Order> findAllOrdersWithNoInvoice() {
+        List<Order> allOrders = (List<Order>) orderRepository.findAll();
+        return allOrders.stream().filter(order -> Boolean.FALSE.equals(order.isInvoiced())).collect(Collectors.toList());
     }
 
     public Optional<Order> findById(Long id) {
