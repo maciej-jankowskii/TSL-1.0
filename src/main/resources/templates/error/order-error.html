@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../static/styles/main.css" th:href="@{/styles/main.css}">
+  <title>Błąd - TSL COMPANY</title>
+</head>
+<body>
+<div class="header">
+  <div class="container">
+    <div class="app-name">TSL COMPANY</div>
+    <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
+  </div>
+</div>
+<div class="container">
+  <h2>Błąd</h2>
+  <p>Nie znaleziono zlecenia lub nie można go edytować, ponieważ został już zafakturowany.</p>
+</div>
+<div class="container">
+  <a th:href="@{/show-all-orders}" class="panel-button-forwarder">Powrót do listy ładunków</a>
+</div>
+</body>
+</html>

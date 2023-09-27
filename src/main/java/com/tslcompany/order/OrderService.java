@@ -97,5 +97,21 @@ public class OrderService {
         return orderMapper.map(saved);
     }
 
+    @Transactional
+    public OrderDto updateOrder(Long id, OrderDto orderDto){
+        Order order = orderRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Brak ładunku"));
+        if (order == null){
+            throw new NoSuchElementException("Brak zlecenia");
+        }
+        if (order.isInvoiced()){
+            throw new IllegalStateException("Nie można edytować zlecenia");
+        }
+
+        order.setPrice(orderDto.getPrice());
+        order.setTruckNumbers(orderDto.getTruckNumbers());
+        Order saved = orderRepository.save(order);
+        return orderMapper.map(saved);
+    }
+
 
 }

@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class OrderDto {
-
+    private Long id;
     private Long cargoId;
     private Long carrierId;
     private BigDecimal price;

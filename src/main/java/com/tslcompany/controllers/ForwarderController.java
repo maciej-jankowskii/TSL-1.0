@@ -175,7 +175,7 @@ public class ForwarderController {
     }
 
     @PostMapping("/update-cargo")
-    public String updateCargo(@ModelAttribute("cargoDto") CargoDto cargoDto, Model model){
+    public String updateCargo(@ModelAttribute("cargoDto") CargoDto cargoDto){
         try {
             cargoService.editCargo(cargoDto.getId(), cargoDto);
             return "redirect:/show-all-cargos";
@@ -183,6 +183,23 @@ public class ForwarderController {
             return "redirect:/cargo-error";
         }
     }
+    @PostMapping("/edit-order")
+    public String editOrder(@RequestParam Long id, Model model){
+        Order order = orderService.findById(id).orElseThrow(() -> new NoSuchElementException("Brak ładunku"));
+        model.addAttribute("order", order);
+        return "edit-order-form";
+    }
+    @PostMapping("/update-order")
+    public String updateOrder(@ModelAttribute("orderDto") OrderDto orderDto){
+        try {
+            orderService.updateOrder(orderDto.getId(), orderDto);
+            return "redirect:/show-all-orders";
+        } catch (NoSuchElementException | IllegalStateException e){
+            return "redirect:/order-error";
+        }
+
+    }
+
 
 
 }

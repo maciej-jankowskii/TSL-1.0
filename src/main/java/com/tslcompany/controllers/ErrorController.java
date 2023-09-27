@@ -21,4 +21,9 @@ public class ErrorController {
     public String cargoError(){
         return "error/cargo-error";
     }
+
+    @GetMapping("/order-error")
+    public String orderError(){
+        return "error/order-error";
+    }
 }

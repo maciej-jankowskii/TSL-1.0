@@ -33,6 +33,12 @@
       <br>
       <span th:text="${'Status : ' + order.orderStatus}"></span>
       <br>
+      <span>
+      <form th:action="@{/edit-order}" method="post">
+       <input type="hidden" name="id" th:value="${order.id}" />
+       <button type="submit" class="edit-button">Edytuj</button>
+     </form>
+      </span>
 
 
       <form th:action="@{/update-order-status}" method="post">
