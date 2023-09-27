@@ -9,7 +9,7 @@
 <body>
 <div class="header">
   <div class="container">
-    <div class="app-name">Panel Administratora</div>
+    <div class="app-name">Panel Księgowości</div>
     <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
   </div>
 </div>
@@ -46,7 +46,7 @@
           <input type="hidden" name="invoiceId" th:value="${invoice.id}" />
           <button type="submit">Oznacz jako zapłacona</button>
         </form>
-        <a>Wyślij ponaglenie</a>
+        <a class="login-link" th:href="@{send-reminder}">Wyślij ponaglenie</a>
       </td>
       <td th:text="${invoice.paid ? 'Tak' : 'Nie'}"></td>
     </tr>
