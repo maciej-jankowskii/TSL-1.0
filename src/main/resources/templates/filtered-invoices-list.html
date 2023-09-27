@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+    <title>Odfiltrowane Faktury - TSL COMPANY</title>
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="app-name">Panel Księgowości</div>
+        <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
+    </div>
+</div>
+<div class="container">
+    <h2>Nieopłacone faktury od przewoźników:</h2>
+    <table class="invoice-table">
+        <thead>
+        <tr>
+            <th>Numer faktury</th>
+            <th>Zamówienie</th>
+            <th>Przewoźnik</th>
+            <th>Netto</th>
+            <th>Brutto</th>
+            <th>Termin płatności</th>
+            <th>Akcja</th>
+            <th>Opłacona</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="invoice : ${invoices}">
+            <td th:text="${invoice.invoiceNumber}"></td>
+            <td th:text="${invoice.order.id}"></td>
+            <td th:text="${invoice.carrier.fullName}"></td>
+            <td th:text="${invoice.nettoValue}"></td>
+            <td th:text="${invoice.bruttoValue}"></td>
+            <td th:text="${invoice.dueDate}"></td>
+            <td>
+                <form th:if="${not invoice.paid}" th:action="@{/pay-invoice-carrier}" th:method="post">
+                    <input type="hidden" name="invoiceId" th:value="${invoice.id}" />
+                    <button type="submit">Opłać</button>
+                </form>
+            </td>
+            <td th:text="${invoice.paid ? 'Tak' : 'Nie'}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <a th:href="@{/invoices-carrier}" class="panel-button-forwarder">Powrót do panelu głównego</a>
+</div>
+</body>
+</html>

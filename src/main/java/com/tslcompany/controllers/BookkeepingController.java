@@ -71,6 +71,14 @@ public class BookkeepingController {
         return "redirect:/invoices-carrier";
     }
 
+    @PostMapping("/filter-invoices-carrier")
+    public String showFilterInvoices(@RequestParam(name = "isPaid") String isPaid, Model model){
+        Boolean isPaidBoolean = "true".equals(isPaid);
+        List<InvoiceFromCarrier> filteredInvoices = invoiceCarrierService.filterInvoices(isPaidBoolean);
+        model.addAttribute("invoices", filteredInvoices);
+        return "filtered-invoices-list";
+    }
+
 
     @PostMapping("/pay-invoice-carrier")
     public String payInvoiceCarrier(@RequestParam("invoiceId") Long invoiceId){

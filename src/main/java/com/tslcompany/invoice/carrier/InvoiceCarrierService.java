@@ -13,6 +13,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class InvoiceCarrierService {
@@ -34,6 +36,18 @@ public class InvoiceCarrierService {
     public List<InvoiceFromCarrier> findAllInvoices(){
         return (List<InvoiceFromCarrier>) invoiceCarrierRepository.findAll();
     }
+
+    public List<InvoiceFromCarrier> filterInvoices(Boolean isPaid){
+        List<InvoiceFromCarrier> allInvoices = (List<InvoiceFromCarrier>) invoiceCarrierRepository.findAll();
+
+        if (isPaid) {
+            return allInvoices.stream().filter(InvoiceFromCarrier::isPaid).toList();
+        } else {
+            return allInvoices.stream().filter(invoice -> !invoice.isPaid()).toList();
+        }
+    }
+
+
     @Transactional
     public InvoiceCarrierDto addInvoiceFromCarrier(InvoiceCarrierDto invoiceCarrierDto){
         InvoiceFromCarrier invoice = invoiceCarrierMapper.map(invoiceCarrierDto);
