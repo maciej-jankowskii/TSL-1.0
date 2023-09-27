@@ -55,6 +55,7 @@ public class SecurityConfig {
                         .requestMatchers(mvc.pattern("/filter-invoices-client")).hasAnyRole("ACCOUNTANT", "MANAGEMENT")
                         .requestMatchers(mvc.pattern("/send-reminder")).hasAnyRole("ACCOUNTANT", "MANAGEMENT")
                         .requestMatchers(mvc.pattern("/send-emial")).hasAnyRole("ACCOUNTANT", "MANAGEMENT")
+                        .requestMatchers(mvc.pattern("/forwarders-margin")).hasAnyRole("ACCOUNTANT", "MANAGEMENT")
                         .requestMatchers(mvc.pattern("/management")).hasRole("MANAGEMENT")
                         .requestMatchers(mvc.pattern("/employee-management")).hasRole("MANAGEMENT")
                         .requestMatchers(mvc.pattern("/forwarder-list")).hasRole("MANAGEMENT")

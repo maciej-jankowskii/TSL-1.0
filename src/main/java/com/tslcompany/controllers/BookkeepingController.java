@@ -5,6 +5,8 @@ import com.tslcompany.cargo.CargoRepository;
 import com.tslcompany.cargo.CargoService;
 import com.tslcompany.customer.carrier.Carrier;
 import com.tslcompany.customer.carrier.CarrierService;
+import com.tslcompany.forwarder.ForwarderDto;
+import com.tslcompany.forwarder.ForwarderService;
 import com.tslcompany.invoice.carrier.InvoiceCarrierDto;
 import com.tslcompany.invoice.carrier.InvoiceCarrierService;
 import com.tslcompany.invoice.carrier.InvoiceFromCarrier;
@@ -29,15 +31,17 @@ public class BookkeepingController {
     private final CarrierService carrierService;
     private final CargoRepository cargoRepository;
     private final CargoService cargoService;
+    private final ForwarderService forwarderService;
 
 
-    public BookkeepingController(InvoiceCarrierService invoiceCarrierService, InvoiceClientService invoiceClientService, OrderService orderService, CarrierService carrierService, CargoRepository cargoRepository, CargoService cargoService) {
+    public BookkeepingController(InvoiceCarrierService invoiceCarrierService, InvoiceClientService invoiceClientService, OrderService orderService, CarrierService carrierService, CargoRepository cargoRepository, CargoService cargoService, ForwarderService forwarderService) {
         this.invoiceCarrierService = invoiceCarrierService;
         this.invoiceClientService = invoiceClientService;
         this.orderService = orderService;
         this.carrierService = carrierService;
         this.cargoRepository = cargoRepository;
         this.cargoService = cargoService;
+        this.forwarderService = forwarderService;
     }
 
     @GetMapping("/bookkeeping")
@@ -121,6 +125,13 @@ public class BookkeepingController {
     public String addNewClientInvoice(@ModelAttribute("invoiceDto") InvoiceClientDto invoiceDto) {
         invoiceClientService.addInvoiceForClient(invoiceDto);
         return "redirect:/invoices-client";
+    }
+
+    @GetMapping("/forwarders-margin")
+    public String forwardersMarginForm(Model model){
+        List<ForwarderDto> allForwarders = forwarderService.findAllForwarders();
+        model.addAttribute("allForwarders", allForwarders);
+        return "forwarders-margin";
     }
 
 

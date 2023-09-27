@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/bookkeeping-panel.css" th:href="@{/styles/bookkeeping-panel.css}">
+  <title>Wyniki spedytorów</title>
+  <style>
+    .forwarders-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .forwarders-table th, .forwarders-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .forwarders-table th {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    .forwarders-table tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="container">
+    <div class="app-name">Wyniki spedytorów</div>
+  </div>
+</div>
+<div class="container">
+  <table class="forwarders-table">
+    <thead>
+    <tr>
+      <th>ID Spedytora</th>
+      <th>E-mail</th>
+      <th>Całkowita Marża</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="forwarder : ${allForwarders}">
+      <td th:text="${forwarder.userId}"></td>
+      <td th:text="${forwarder.email}"></td>
+      <td th:text="${forwarder.totalMargin}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container">
+  <a th:href="@{/bookkeeping}" class="panel-button-forwarder">Powrót do panelu głównego</a>
+</div>
+</body>
+</html>

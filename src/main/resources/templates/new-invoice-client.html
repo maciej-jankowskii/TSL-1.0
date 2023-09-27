@@ -6,6 +6,48 @@
   <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
 
   <title>Dodaj Fakturę - TSL COMPANY</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .invoice-form {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: darkgreen;
+    }
+  </style>
 </head>
 <body>
 <div class="header">
@@ -38,13 +80,13 @@
     <label for="bruttoValue">Wartość brutto:</label>
     <input type="text" id="bruttoValue" name="bruttoValue" required>
 
-
+    <br><br>
     <input type="submit" value="Dodaj fakturę">
   </form>
 
 </div>
 <div class="container">
-  <a th:href="@{/invoices-carrier}" class="panel-button-forwarder">Powrót do panelu głównego</a>
+  <a th:href="@{/bookkeeping}" class="panel-button-forwarder">Powrót do panelu głównego</a>
 </div>
 </body>
 </html>

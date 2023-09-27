@@ -37,7 +37,8 @@ public class Order {
     @Enumerated(EnumType.STRING)
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;  //zmiany
+    private User user;
+    private BigDecimal margin;
     private OrderStatus orderStatus;
     private boolean isInvoiced;
 }

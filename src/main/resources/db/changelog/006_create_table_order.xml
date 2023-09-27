@@ -54,5 +54,10 @@
     <changeSet id="005" author="maciej-jankowski">
         <sql>UPDATE order_to_send SET is_invoiced = false</sql>
     </changeSet>
+    <changeSet id="006" author="maciej-jankowski">
+        <addColumn tableName="order_to_send">
+            <column name="margin" type="NUMERIC(10, 2)"/>
+        </addColumn>
+    </changeSet>
 
 </databaseChangeLog>
