@@ -33,8 +33,13 @@
       <br>
       <span th:text="${'Towar: ' + cargo.goods}"></span>
       <br>
-      &nbsp;
+      <span>
+      <form th:action="@{/edit-cargo}" method="post">
+       <input type="hidden" name="id" th:value="${cargo.id}" />
+       <button type="submit" class="edit-button">Edytuj</button>
+     </form>
+      </span>
     </li>
   </ul>
-  <a class="return-link" href="#" th:href="@{/forwarder}">Powród do panelu spedytora</a>
+  <a class="panel-button-forwarder" href="#" th:href="@{/forwarder}">Powród do panelu spedytora</a>
 </div>

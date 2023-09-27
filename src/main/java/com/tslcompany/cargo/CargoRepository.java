@@ -12,4 +12,8 @@ public interface CargoRepository extends CrudRepository<Cargo, Long> {
 
     void deleteById(Long id);
 
+    Cargo findByCargoNumberFromCustomer(String cargoNumber);
+
+
+
 }

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
-  <title>Dodaj ładunek - TSL COMPANY</title>
+  <title>Edytuj ładunek - TSL COMPANY</title>
 </head>
 <body>
 <div class="header">
@@ -17,8 +17,9 @@
   <a th:href="@{/forwarder}" class="panel-button-forwarder">Powrót do panelu głównego</a>
 </div>
 <div class="container">
-  <form class="registration-form" th:action="@{/add-new-cargo}" method="post" th:object="${cargoDto}">
-    <h2>Dodaj nowy ładunek</h2>
+  <form class="registration-form" th:action="@{/update-cargo}" method="post" th:object="${cargo}">
+    <input type="hidden"  id="id" name="id" th:field="${cargo.id}" />
+    <h2>Edytuj istniejący ładunek ładunek</h2>
     <div class="form-group">
       <label for="cargoNumberFromCustomer">Numer ładunku od klienta</label>
       <input type="text" id="cargoNumberFromCustomer" name="cargoNumberFromCustomer" placeholder="Numer ładunku od klienta" required>
@@ -26,12 +27,6 @@
     <div class="form-group">
       <label for="price">Cena</label>
       <input type="number" id="price" name="price" placeholder="Cena" required>
-    </div>
-    <div class="form-group">
-      <label for="clientDtoId">Klient</label>
-      <select id="clientDtoId" name="clientDto.id">
-        <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.fullName}"></option>
-      </select>
     </div>
     <div class="form-group">
       <label for="loadingDate">Data załadunku</label>
@@ -57,7 +52,7 @@
       <label for="description">Opis</label>
       <input type="text" id="description" name="description" placeholder="Opis">
     </div>
-    <button type="submit" class="panel-button-forwarder">Dodaj ładunek</button>
+    <button type="submit" class="panel-button-forwarder">Zapisz zmiany</button>
   </form>
 </div>
 </body>

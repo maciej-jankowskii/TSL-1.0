@@ -40,6 +40,9 @@ public class CargoService {
     public Optional<Cargo> findCargo(Long id) {
         return cargoRepository.findById(id);
     }
+    public Cargo findCargoByCargoNumber(String cargoNumber){
+        return cargoRepository.findByCargoNumberFromCustomer(cargoNumber);
+    }
 
     @Transactional
     public void deleteById(Long id) {
@@ -61,6 +64,29 @@ public class CargoService {
 
         Cargo saved = cargoRepository.save(cargo);
 
+        return cargoMapper.map(saved);
+    }
+
+    @Transactional
+    public CargoDto editCargo(Long id, CargoDto cargoDto){
+        Cargo cargo = cargoRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Brak ładunku"));
+        if (cargo == null) {
+            throw new NoSuchElementException("Brak ładunku");
+        }
+        if (cargo.isAssignedToOrder() || cargo.isInvoicedForClient()){
+            throw new IllegalStateException("Nie można edytować ładunku który został przypisany do zlecenia lub zafakturowany");
+        }
+            cargo.setCargoNumberFromCustomer(cargoDto.getCargoNumberFromCustomer());
+            cargo.setPrice(cargoDto.getPrice());
+            cargo.setLoadingDate(cargoDto.getLoadingDate());
+            cargo.setUnloadingDate(cargoDto.getUnloadingDate());
+            cargo.setLoadingAddress(cargoDto.getLoadingAddress());
+            cargo.setUnloadingAddress(cargoDto.getUnloadingAddress());
+            cargo.setGoods(cargoDto.getGoods());
+            cargo.setDescription(cargo.getDescription());
+
+
+        Cargo saved = cargoRepository.save(cargo);
         return cargoMapper.map(saved);
     }
 }

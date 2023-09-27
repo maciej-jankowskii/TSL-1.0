@@ -10,6 +10,7 @@
 <div class="header">
   <div class="container">
     <div class="app-name">TSL COMPANY</div>
+    <div class="app-description">Zarządzaj swoją firmą w jednym miejscu.</div>
   </div>
 </div>
 <div class="container">
@@ -28,7 +29,7 @@
       <br>
       <span th:text="${'Data załadunku: ' + order.cargo.loadingDate + ' | Data rozładunku: ' + order.cargo.unloadingDate}"></span>
       <br>
-      <span th:text="${'Marża : ' + (order.cargo.price - order.price)}"></span>
+      <span th:text="${'Marża : ' + order.margin}"></span>
       <br>
       <span th:text="${'Status : ' + order.orderStatus}"></span>
       <br>
@@ -52,5 +53,5 @@
       &nbsp;
     </li>
   </ul>
-  <a class="return-link" href="#" th:href="@{/forwarder}">Powród do panelu spedytora</a>
+  <a class="panel-button-forwarder" href="#" th:href="@{/forwarder}">Powród do panelu spedytora</a>
 </div>

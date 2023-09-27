@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Setter
 public class CargoDto {
 
+    private Long id;
     private String cargoNumberFromCustomer;
     private BigDecimal price;
     private ClientDto clientDto;

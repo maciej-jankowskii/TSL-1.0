@@ -30,7 +30,7 @@
             <option th:each="carrier : ${allCarriers}" th:value="${carrier.id}" th:text="${carrier.fullName}"></option>
         </select>
     </div>
-    <!-- Pozostałe pola formularza -->
+
     <div class="form-group">
         <label for="price">Cena:</label>
         <input type="number" id="price" name="price" required>
@@ -64,7 +64,7 @@
         </select>
     </div>
 
-    <button type="submit" class="registration-button">Dodaj Zlecenie</button>
+    <button type="submit" class="panel-button-forwarder">Dodaj Zlecenie</button>
 </form>
 </body>
 </html>

@@ -45,15 +45,15 @@
   <form th:action="@{/send-email}" th:object="${emailForm}" method="post">
     <div class="form-group">
       <label for="recipientAddress">Adres Odbiorcy:</label>
-      <input type="text" id="recipientAddress" name="recipientAddress" th:field="*{recipientAddress}" required />
+      <input type="text" id="recipientAddress" name="recipientAddress" placeholder="Adres e-mail odbiorcy" th:field="*{recipientAddress}" required />
     </div>
     <div class="form-group">
       <label for="emailSubject">Temat:</label>
-      <input type="text" id="emailSubject" name="emailSubject" th:field="*{emailSubject}" required />
+      <input type="text" id="emailSubject" name="emailSubject" placeholder="Temat" th:field="*{emailSubject}" required />
     </div>
     <div class="form-group">
       <label for="emailContent">Treść:</label>
-      <textarea id="emailContent" name="emailContent" th:field="*{emailText}" required></textarea>
+      <textarea id="emailContent" name="emailContent" placeholder="Treść wiadomości.." th:field="*{emailText}" required></textarea>
     </div>
     <div class="form-group">
       <button type="submit">Wyślij</button>

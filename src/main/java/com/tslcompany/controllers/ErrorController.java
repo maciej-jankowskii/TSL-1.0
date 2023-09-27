@@ -17,4 +17,8 @@ public class ErrorController {
     public String error500(){
         return "error/500";
     }
+    @GetMapping("/cargo-error")
+    public String cargoError(){
+        return "error/cargo-error";
+    }
 }

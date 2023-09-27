@@ -28,7 +28,7 @@
     </div>
     <div class="form-group">
       <label for="vatNumber">Numer VAT</label>
-      <input type="text" id="vatNumber" name="vatNumber" placeholder="Numer VAT" required>
+      <input type="text" id="vatNumber" name="vatNumber" placeholder="Numer VAT" required pattern="[A-Z]{2}\d{10}">
     </div>
     <div class="form-group">
       <label for="description">Opis</label>
@@ -61,7 +61,7 @@
       <input type="text" id="flatNo" name="address.flatNo"   placeholder="Numer mieszkania" required>
     </div>
 
-    <button type="submit" class="registration-button">Dodaj klienta</button>
+    <button type="submit" class="panel-button-forwarder">Dodaj klienta</button>
   </form>
 </div>
 </body>

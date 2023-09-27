@@ -167,6 +167,22 @@ public class ForwarderController {
     public String changeStatusConfirmation() {
         return "order-status-confirmation";
     }
+    @PostMapping("/edit-cargo")
+    public String editCargo(@RequestParam Long id, Model model){
+        Cargo cargo  = cargoService.findCargo(id).orElseThrow(() -> new NoSuchElementException("Brak ładunku"));
+        model.addAttribute("cargo", cargo);
+        return "edit-cargo-form";
+    }
+
+    @PostMapping("/update-cargo")
+    public String updateCargo(@ModelAttribute("cargoDto") CargoDto cargoDto, Model model){
+        try {
+            cargoService.editCargo(cargoDto.getId(), cargoDto);
+            return "redirect:/show-all-cargos";
+        }catch (NoSuchElementException | IllegalStateException e){
+            return "redirect:/cargo-error";
+        }
+    }
 
 
 }

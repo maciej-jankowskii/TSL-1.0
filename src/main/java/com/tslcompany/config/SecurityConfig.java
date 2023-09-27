@@ -35,6 +35,9 @@ public class SecurityConfig {
                         .requestMatchers(mvc.pattern("/add-cargo")).hasAnyRole("FORWARDER", "MANAGEMENT")
                         .requestMatchers(mvc.pattern("/add-order")).hasAnyRole("FORWARDER", "MANAGEMENT")
                         .requestMatchers(mvc.pattern("/save-order")).hasAnyRole("FORWARDER", "MANAGEMENT")
+                        .requestMatchers(mvc.pattern("/edit-cargo")).hasAnyRole("FORWARDER", "MANAGEMENT")
+                        .requestMatchers(mvc.pattern("/update-cargo")).hasAnyRole("FORWARDER", "MANAGEMENT")
+                        .requestMatchers(mvc.pattern("/cargo-error")).hasAnyRole("FORWARDER", "MANAGEMENT")
                         .requestMatchers(mvc.pattern("/orders-list")).hasAnyRole("FORWARDER", "MANAGEMENT")
                         .requestMatchers(mvc.pattern("/update-order-status")).hasAnyRole("FORWARDER", "MANAGEMENT")
                         .requestMatchers(mvc.pattern("/order-status-confirmation")).hasAnyRole("FORWARDER", "MANAGEMENT")
@@ -68,7 +71,8 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
         );
         http.formLogin(login -> login.loginPage("/login").permitAll()
-                .defaultSuccessUrl("/home-page", true));
+                .defaultSuccessUrl("/home-page", true)
+                .failureUrl("/login?error=true"));
         http.logout(logout -> logout.logoutRequestMatcher(mvc.pattern(HttpMethod.GET, "/logout/**"))
                 .logoutSuccessUrl("/").permitAll());
 
