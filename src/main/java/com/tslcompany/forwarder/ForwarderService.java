@@ -2,6 +2,7 @@ package com.tslcompany.forwarder;
 
 import com.tslcompany.order.Order;
 import com.tslcompany.order.OrderRepository;
+import com.tslcompany.order.OrderService;
 import com.tslcompany.user.User;
 import com.tslcompany.user.UserRepository;
 import org.springframework.stereotype.Service;

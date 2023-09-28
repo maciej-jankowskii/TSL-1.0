@@ -91,8 +91,12 @@ public class ForwarderController {
 
     @PostMapping("/add-new-cargo")
     public String addCargo(@ModelAttribute("cargoDto") CargoDto cargoDto) {
-        cargoService.addCargo(cargoDto);
-        return "redirect:/add-cargo";
+        try {
+            cargoService.addCargo(cargoDto);
+            return "redirect:/add-cargo";
+        } catch (IllegalArgumentException e){
+            return "redirect:/date-error";
+        }
     }
 
     @GetMapping("/show-all-cargos")
@@ -113,10 +117,10 @@ public class ForwarderController {
 
     @GetMapping("/add-order")
     public String orderForm(Model model) {
-        List<Cargo> allCargos = cargoService.findAllCargos();
         List<Carrier> aLlCarriers = carrierService.findALlCarriers();
+        List<Cargo> freeCargos = cargoService.findFreeCargos();
 
-        List<Cargo> freeCargos = allCargos.stream().filter(cargo -> cargo.isAssignedToOrder() == false).collect(Collectors.toList());
+
         model.addAttribute("allCargos", freeCargos);
         model.addAttribute("allCarriers", aLlCarriers);
         return "add-order";
@@ -133,34 +137,13 @@ public class ForwarderController {
 
     @PostMapping("/update-order-status")
     public String changeStatusOfOrder(@RequestParam("orderId") Long orderId, @RequestParam("newOrderStatus") OrderStatus newStatus) {
-        Order order = orderService.findById(orderId).orElseThrow(() -> new NoSuchElementException("Brak zlecenia o takim ID"));
-        OrderStatus status = OrderStatus.valueOf(String.valueOf(newStatus));
-        orderService.changeOrderStatus(orderId, status);
-
-        if (OrderStatus.CANCELED.equals(newStatus)) {
-            Cargo cargo = order.getCargo();
-            Client client = cargo.getClient();
-            Carrier carrier = order.getCarrier();
-
-            BigDecimal price = order.getPrice();
-            BigDecimal cargoPrice = order.getCargo().getPrice();
-
-            BigDecimal clientBalance = client.getBalance();
-            BigDecimal carrierBalance = carrier.getBalance();
-
-            client.setBalance(clientBalance.subtract(cargoPrice));
-            carrier.setBalance(carrierBalance.subtract(price));
-
-            orderService.deleteById(orderId);
-            cargoService.deleteById(cargo.getId());
-
-
-            clientRepository.save(client);
-            carrierRepository.save(carrier);
+        try {
+            OrderStatus status = OrderStatus.valueOf(String.valueOf(newStatus));
+            orderService.changeOrderStatus(orderId, status);
+            return "redirect:/order-status-confirmation";
+        } catch (NoSuchElementException | IllegalStateException e){
+            return "redirect:/order-error";
         }
-
-
-        return "redirect:/order-status-confirmation";
     }
 
     @GetMapping("/order-status-confirmation")

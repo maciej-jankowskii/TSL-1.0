@@ -29,17 +29,15 @@ public class BookkeepingController {
     private final InvoiceClientService invoiceClientService;
     private final OrderService orderService;
     private final CarrierService carrierService;
-    private final CargoRepository cargoRepository;
     private final CargoService cargoService;
     private final ForwarderService forwarderService;
 
 
-    public BookkeepingController(InvoiceCarrierService invoiceCarrierService, InvoiceClientService invoiceClientService, OrderService orderService, CarrierService carrierService, CargoRepository cargoRepository, CargoService cargoService, ForwarderService forwarderService) {
+    public BookkeepingController(InvoiceCarrierService invoiceCarrierService, InvoiceClientService invoiceClientService, OrderService orderService, CarrierService carrierService, CargoService cargoService, ForwarderService forwarderService) {
         this.invoiceCarrierService = invoiceCarrierService;
         this.invoiceClientService = invoiceClientService;
         this.orderService = orderService;
         this.carrierService = carrierService;
-        this.cargoRepository = cargoRepository;
         this.cargoService = cargoService;
         this.forwarderService = forwarderService;
     }

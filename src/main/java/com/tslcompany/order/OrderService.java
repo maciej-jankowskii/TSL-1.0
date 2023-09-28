@@ -4,7 +4,10 @@ import com.tslcompany.cargo.Cargo;
 import com.tslcompany.cargo.CargoRepository;
 import com.tslcompany.cargo.CargoService;
 import com.tslcompany.customer.carrier.Carrier;
+import com.tslcompany.customer.carrier.CarrierRepository;
 import com.tslcompany.customer.carrier.CarrierService;
+import com.tslcompany.customer.client.Client;
+import com.tslcompany.customer.client.ClientRepository;
 import com.tslcompany.details.OrderStatus;
 import com.tslcompany.user.User;
 import com.tslcompany.user.UserMapper;
@@ -30,9 +33,11 @@ public class OrderService {
 
     private final UserService userService;
     private final CargoRepository cargoRepository;
+    private final ClientRepository clientRepository;
+    private final CarrierRepository carrierRepository;
 
 
-    public OrderService(OrderRepository orderRepository, OrderMapper orderMapper, CargoService cargoService, CarrierService carrierService, UserMapper userMapper, UserService userService, CargoRepository cargoRepository) {
+    public OrderService(OrderRepository orderRepository, OrderMapper orderMapper, CargoService cargoService, CarrierService carrierService, UserMapper userMapper, UserService userService, CargoRepository cargoRepository, ClientRepository clientRepository, CarrierRepository carrierRepository) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
         this.cargoService = cargoService;
@@ -40,6 +45,8 @@ public class OrderService {
         this.userMapper = userMapper;
         this.userService = userService;
         this.cargoRepository = cargoRepository;
+        this.clientRepository = clientRepository;
+        this.carrierRepository = carrierRepository;
     }
 
     @Transactional
@@ -54,6 +61,11 @@ public class OrderService {
         order.setCargo(cargo);
         order.setCarrier(carrier);
         order.setDateAdded(LocalDate.now());
+
+        BigDecimal cargoPrice = cargo.getPrice();
+        BigDecimal orderPrice = order.getPrice();
+        order.setMargin(cargoPrice.subtract(orderPrice));
+
         cargo.setAssignedToOrder(true);
         BigDecimal price = order.getPrice();
         BigDecimal balance = carrier.getBalance();
@@ -68,6 +80,8 @@ public class OrderService {
     public List<Order> findAllOrders() {
         return (List<Order>) orderRepository.findAll();
     }
+
+
 
     public List<Order> findAllOrdersWithNoInvoice() {
         List<Order> allOrders = (List<Order>) orderRepository.findAll();
@@ -89,12 +103,39 @@ public class OrderService {
     }
 
     public OrderDto changeOrderStatus(Long id, OrderStatus orderStatus) {
-        Order order = orderRepository.findById(id).orElseThrow();
+        Order order = orderRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Brak zlecenia"));
+        if (order.isInvoiced()){
+            throw new IllegalStateException("Zlecenie zafakturowane");
+        }
+
+        if (OrderStatus.CANCELED.equals(order)){
+            updateBalanceForCanceledOrder(order);
+        }
         order.setOrderStatus(orderStatus);
-
-
         Order saved = orderRepository.save(order);
         return orderMapper.map(saved);
+    }
+
+    private void updateBalanceForCanceledOrder(Order order){
+        Cargo cargo = order.getCargo();
+        Client client = cargo.getClient();
+        Carrier carrier = order.getCarrier();
+
+        BigDecimal price = order.getPrice();
+        BigDecimal cargoPrice = cargo.getPrice();
+
+        BigDecimal clientBalance = client.getBalance();
+        BigDecimal carrierBalance = carrier.getBalance();
+
+        client.setBalance(clientBalance.subtract(cargoPrice));
+        carrier.setBalance(carrierBalance.subtract(price));
+
+        orderRepository.deleteById(order.getId());
+        cargoService.deleteById(cargo.getId());
+
+        clientRepository.save(client);
+        carrierRepository.save(carrier);
+
     }
 
     @Transactional

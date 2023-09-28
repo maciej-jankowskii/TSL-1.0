@@ -26,4 +26,10 @@ public class ErrorController {
     public String orderError(){
         return "error/order-error";
     }
+
+    @GetMapping("/date-error")
+    public String dateError(){
+        return "error/date-error";
+    }
+
 }

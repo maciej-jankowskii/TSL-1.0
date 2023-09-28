@@ -37,6 +37,11 @@ public class CargoService {
                 .collect(Collectors.toList());
     }
 
+    public List<Cargo> findFreeCargos(){
+        List<Cargo> allCargos = (List<Cargo>) cargoRepository.findAll();
+        return allCargos.stream().filter(cargo -> !cargo.isAssignedToOrder()).collect(Collectors.toList());
+    }
+
     public Optional<Cargo> findCargo(Long id) {
         return cargoRepository.findById(id);
     }
@@ -58,6 +63,12 @@ public class CargoService {
         Cargo cargo = cargoMapper.map(cargoDto);
         cargo.setClient(client);
         cargo.setDateAdded(LocalDate.now());
+
+        LocalDate loadingDate = cargo.getLoadingDate();
+        LocalDate unloadingDate = cargo.getUnloadingDate();
+        if (unloadingDate != null && unloadingDate.isBefore(loadingDate)){
+            throw new IllegalArgumentException();
+        }
         BigDecimal balance = client.getBalance();
         BigDecimal price = cargo.getPrice();
         client.setBalance(balance.add(price));
@@ -78,6 +89,13 @@ public class CargoService {
         }
             cargo.setCargoNumberFromCustomer(cargoDto.getCargoNumberFromCustomer());
             cargo.setPrice(cargoDto.getPrice());
+
+        LocalDate loadingDate = cargo.getLoadingDate();
+        LocalDate unloadingDate = cargo.getUnloadingDate();
+        if (unloadingDate != null && unloadingDate.isBefore(loadingDate)){
+            throw new IllegalArgumentException();
+        }
+
             cargo.setLoadingDate(cargoDto.getLoadingDate());
             cargo.setUnloadingDate(cargoDto.getUnloadingDate());
             cargo.setLoadingAddress(cargoDto.getLoadingAddress());
