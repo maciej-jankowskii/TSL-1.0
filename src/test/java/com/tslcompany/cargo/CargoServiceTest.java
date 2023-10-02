@@ -146,6 +146,46 @@ class CargoServiceTest {
 
     }
 
+    @Test
+    public void testEditCargo(){
+        CargoDto cargoDto = createTestCargoDto();
+        Cargo cargo = createTestCargo(cargoDto);
+        Long cargoId = cargo.getId();
+
+
+        when(cargoRepository.findById(cargoId)).thenReturn(Optional.of(cargo));
+        when(cargoMapper.map(cargo)).thenReturn(cargoDto);
+        when(cargoRepository.save(any(Cargo.class))).thenReturn(cargo);
+
+        CargoDto editedCargo = cargoService.editCargo(cargoId, cargoDto);
+
+        assertNotNull(editedCargo);
+    }
+
+    @Test
+    public void testEditCargoWhenAssignedToOrder(){
+        CargoDto cargoDto = createTestCargoDto();
+        Cargo cargo = createTestCargo(cargoDto);
+        Long cargoId = cargo.getId();
+        cargo.setAssignedToOrder(true);
+
+        when(cargoRepository.findById(cargoId)).thenReturn(Optional.of(cargo));
+
+        assertThrows(IllegalStateException.class, () -> cargoService.editCargo(cargoId, cargoDto));
+    }
+
+    @Test
+    public void testEditCargoWhenAssignedToInvoice(){
+        CargoDto cargoDto = createTestCargoDto();
+        Cargo cargo = createTestCargo(cargoDto);
+        Long cargoId = cargo.getId();
+        cargo.setInvoicedForClient(true);
+
+        when(cargoRepository.findById(cargoId)).thenReturn(Optional.of(cargo));
+
+        assertThrows(IllegalStateException.class, () -> cargoService.editCargo(cargoId, cargoDto));
+    }
+
     private ClientDto createTestClientDto() {
         ClientDto clientDto = new ClientDto();
         clientDto.setId(1L);
