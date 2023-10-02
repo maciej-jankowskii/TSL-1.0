@@ -30,8 +30,8 @@ public class UserService {
         return userRepository.findUserByEmail(email).map(UserMapper::map);
     }
 
-    public Optional<User> findUser(String emial){
-        return userRepository.findUserByEmail(emial);
+    public Optional<User> findUser(String email){
+        return userRepository.findUserByEmail(email);
     }
 
     public void register(UserRegistrationDto register) {
@@ -41,8 +41,6 @@ public class UserService {
         user.setEmail(register.getEmail());
         String hashPassword = passwordEncoder.encode(register.getPassword());
         user.setPassword(hashPassword);
-//        Optional<UserRole> optionalRole = userRoleRepository.findByName(FORWARDER_ROLE);
-//        optionalRole.ifPresent(role -> user.getRoles().add(role));
         userRepository.save(user);
     }
 
@@ -80,9 +78,5 @@ public class UserService {
         } else {
             throw new EntityNotFoundException("Role not found");
         }
-
-
     }
-
-
 }

@@ -1,7 +1,6 @@
 package com.tslcompany.controllers;
 
 import com.tslcompany.cargo.Cargo;
-import com.tslcompany.cargo.CargoRepository;
 import com.tslcompany.cargo.CargoService;
 import com.tslcompany.customer.carrier.Carrier;
 import com.tslcompany.customer.carrier.CarrierService;
@@ -20,7 +19,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class BookkeepingController {
@@ -60,7 +58,6 @@ public class BookkeepingController {
         List<Order> noInvoicedOrders = orderService.findAllOrdersWithNoInvoice();
         model.addAttribute("carriers", carriers);
         model.addAttribute("orders", noInvoicedOrders);
-
         return "new-invoice-carrier";
     }
 

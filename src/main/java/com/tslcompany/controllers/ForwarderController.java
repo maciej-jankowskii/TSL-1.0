@@ -25,10 +25,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 @Controller
 public class ForwarderController {
@@ -65,9 +63,7 @@ public class ForwarderController {
     @PostMapping("/add-new-client")
     public String addClient(@ModelAttribute("clientDto") ClientDto clientDto) {
         ClientDto saved = clientService.addClient(clientDto);
-
         return "redirect:/add-client";
-
     }
 
     @GetMapping("/add-carrier")
@@ -79,7 +75,6 @@ public class ForwarderController {
     public String addCarrier(@ModelAttribute("carrierDto") CarrierDto carrierDto) {
         CarrierDto saved = carrierService.addCarrier(carrierDto);
         return "redirect:/add-carrier";
-
     }
 
     @GetMapping("/add-cargo")
@@ -88,7 +83,6 @@ public class ForwarderController {
         model.addAttribute("clients", clients);
         return "add-cargo";
     }
-
     @PostMapping("/add-new-cargo")
     public String addCargo(@ModelAttribute("cargoDto") CargoDto cargoDto) {
         try {
@@ -110,7 +104,6 @@ public class ForwarderController {
     public String ordersForm(Model model, Authentication authentication) {
         User user = userService.findUser(authentication.getName()).orElseThrow(() -> new NoSuchElementException("Brak użytkownika"));
         List<Order> userOrders = orderService.findOrdersByUser(user);
-
         model.addAttribute("allOrders", userOrders);
         return "orders-list";
     }
@@ -120,7 +113,6 @@ public class ForwarderController {
         List<Carrier> aLlCarriers = carrierService.findALlCarriers();
         List<Cargo> freeCargos = cargoService.findFreeCargos();
 
-
         model.addAttribute("allCargos", freeCargos);
         model.addAttribute("allCarriers", aLlCarriers);
         return "add-order";
@@ -129,7 +121,6 @@ public class ForwarderController {
     @PostMapping("/save-order")
     public String saveOrder(@ModelAttribute("orderDto") OrderDto orderDto, Authentication authentication) {
         String userName = authentication.getName();
-
 
         orderService.createOrder(orderDto, userName);
         return "redirect:/add-order";
@@ -182,7 +173,4 @@ public class ForwarderController {
         }
 
     }
-
-
-
 }
