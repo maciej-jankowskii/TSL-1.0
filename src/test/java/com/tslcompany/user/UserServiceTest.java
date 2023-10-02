@@ -26,13 +26,13 @@ class UserServiceTest {
     private UserService userService;
 
     @BeforeEach
-    public void init(){
+    public void init() {
         MockitoAnnotations.openMocks(this);
         userService = new UserService(userRepository, userRoleRepository, passwordEncoder);
     }
 
     @Test
-    public void testFindUser(){
+    public void testFindUser() {
         //given
         String email = "test@tslcompany.com";
         User user = new User();
@@ -49,7 +49,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testRegister(){
+    public void testRegister() {
         UserRegistrationDto dto = new UserRegistrationDto();
         dto.setFirstName("Test");
         dto.setLastName("Test");
@@ -73,10 +73,10 @@ class UserServiceTest {
     }
 
     @Test
-    public void testFindAllForwarderEmail(){
+    public void testFindAllForwarderEmail() {
         String forwarderRole = "FORWARDER";
         List<User> userList = new ArrayList<>();
-        userList.add(createUser("test1@tslcompany.com",userRoleRepository, forwarderRole));
+        userList.add(createUser("test1@tslcompany.com", userRoleRepository, forwarderRole));
         userList.add(createUser("test2@tslcompany.com", userRoleRepository, forwarderRole));
 
         when(userRepository.findAllUsersByRoles_Name(forwarderRole)).thenReturn(userList);
@@ -90,7 +90,7 @@ class UserServiceTest {
 
 
     @Test
-    public void testFindAllBookkeepingEmail(){
+    public void testFindAllBookkeepingEmail() {
         String bookkeepingRole = "ACCOUNTANT";
         List<User> userList = new ArrayList<>();
         userList.add(createUser("test1@tslcompany.com", userRoleRepository, bookkeepingRole));
@@ -105,7 +105,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testDeleteUser(){
+    public void testDeleteUser() {
         String email = "test@tslcompany.com";
 
         userService.deleteUserByEmail(email);
@@ -114,7 +114,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testFindUserWithoutRole(){
+    public void testFindUserWithoutRole() {
         List<User> users = new ArrayList<>();
         users.add(createUserWithoutRole("test1@tslcompany.com"));
         users.add(createUserWithoutRole("test2@tslcompany.com"));
@@ -128,7 +128,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testSetNewRole(){
+    public void testSetNewRole() {
         Long userId = 1L;
         String roleName = "ROLE";
         User userWithoutRole = createUserWithoutRole("test1@tslcompanny.com");
@@ -145,13 +145,12 @@ class UserServiceTest {
     }
 
 
-
-    private User createUser(String email, UserRoleRepository userRoleRepository, String roleName){
+    private User createUser(String email, UserRoleRepository userRoleRepository, String roleName) {
         User user = new User();
         user.setEmail(email);
-        if (roleName != null){
+        if (roleName != null) {
             Optional<UserRole> optionalRole = userRoleRepository.findByName(roleName);
-            if (optionalRole.isPresent()){
+            if (optionalRole.isPresent()) {
                 UserRole role = optionalRole.get();
                 user.getRoles().add(role);
             }
@@ -160,7 +159,7 @@ class UserServiceTest {
         return user;
     }
 
-    private User createUserWithoutRole(String email){
+    private User createUserWithoutRole(String email) {
         User user = new User();
         user.setEmail(email);
         return user;

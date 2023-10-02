@@ -44,6 +44,8 @@ public class ClientService {
 
         client.setAddress(address);
         client.setBalance(BigDecimal.ZERO);
+
+
         Client saved = clientRepository.save(client);
         return clientMapper.map(saved);
 
