@@ -45,6 +45,7 @@ public class CargoService {
     public Optional<Cargo> findCargo(Long id) {
         return cargoRepository.findById(id);
     }
+
     public Cargo findCargoByCargoNumber(String cargoNumber){
         return cargoRepository.findByCargoNumberFromCustomer(cargoNumber);
     }
