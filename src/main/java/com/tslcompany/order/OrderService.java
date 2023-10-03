@@ -116,7 +116,7 @@ public class OrderService {
         return orderMapper.map(saved);
     }
 
-    private void updateBalanceForCanceledOrder(Order order){
+    public void updateBalanceForCanceledOrder(Order order){
         Cargo cargo = order.getCargo();
         Client client = cargo.getClient();
         Carrier carrier = order.getCarrier();

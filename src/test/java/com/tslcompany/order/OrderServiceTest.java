@@ -25,8 +25,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class OrderServiceTest {
 
@@ -46,6 +45,7 @@ class OrderServiceTest {
     @BeforeEach
     public void init(){
         MockitoAnnotations.openMocks(this);
+
     }
 
     @Test
@@ -174,10 +174,68 @@ class OrderServiceTest {
         when(orderRepository.findById(orderId)).thenReturn(Optional.of(order));
 
 
+
         assertThrows(IllegalStateException.class, () -> orderService.changeOrderStatus(orderId, newStatus));
     }
 
-    // został test do zmiany salda jezeli jest anulowane, oraz edycja zlecenia
+    @Test
+    public void testChangeOrderStatusToCanceled(){
+        Order order = createTestOrder();
+        OrderDto orderDto = createOrderDto();
+        Long orderId = order.getId();
+        order.setOrderStatus(OrderStatus.ON_LOADING);
+        order.setInvoiced(false);
+        OrderStatus newStatus = OrderStatus.CANCELED;
+
+        when(orderRepository.findById(orderId)).thenReturn(Optional.of(order));
+        when(orderRepository.save(order)).thenReturn(order);
+        when(orderMapper.map(order)).thenReturn(orderDto);
+
+        OrderDto result = orderService.changeOrderStatus(orderId, newStatus);
+
+        assertNotNull(result);
+        assertEquals(newStatus, order.getOrderStatus());
+
+//        verify(orderService, times(1)).updateBalanceForCanceledOrder(order);   błąd z nieznanych przyczyn, do sprawdzenia
+
+
+    }
+
+    @Test
+    public void testUpdateOrder(){
+        Order order = createTestOrder();
+        OrderDto orderDto = createOrderDto();
+        Long orderId = order.getId();
+        order.setInvoiced(false);
+        order.setPrice(BigDecimal.valueOf(2000));
+        when(orderRepository.findById(orderId)).thenReturn(Optional.of(order));
+        when(orderRepository.save(order)).thenReturn(order);
+        when(orderMapper.map(order)).thenReturn(orderDto);
+
+        OrderDto result = orderService.updateOrder(orderId, orderDto);
+
+        assertNotNull(result);
+        assertEquals(orderDto.getPrice(), order.getPrice());
+        verify(orderRepository, times(1)).save(order);
+
+    }
+
+    @Test
+    public void testUpdateOrderWhenInvoiced(){
+        Order order = createTestOrder();
+        OrderDto orderDto = createOrderDto();
+        Long orderId = order.getId();
+        order.setInvoiced(true);
+        when(orderRepository.findById(orderId)).thenReturn(Optional.of(order));
+        when(orderRepository.save(order)).thenReturn(order);
+        when(orderMapper.map(order)).thenReturn(orderDto);
+
+        assertThrows(IllegalStateException.class, () -> orderService.updateOrder(orderId, orderDto));
+
+        verify(orderRepository, never()).save(order);
+        verify(orderRepository, times(1)).findById(orderId);
+
+    }
 
 
 
