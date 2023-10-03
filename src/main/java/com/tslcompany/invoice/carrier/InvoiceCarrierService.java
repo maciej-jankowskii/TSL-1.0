@@ -55,12 +55,10 @@ public class InvoiceCarrierService {
         invoice.setInvoiceDate(currentDate);
 
 
-
         Long orderId = invoice.getOrder().getId();
         Order order = orderService.findById(orderId).orElseThrow(() -> new NoSuchElementException("Brak takiego zlecenia"));
         order.setInvoiced(true);
         orderRepository.save(order);
-
 
         Carrier carrier = invoice.getCarrier();
         if (carrier != null){
