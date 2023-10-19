@@ -1,9 +1,9 @@
 <h1 align="center" id="title">TSL COMPANY</h1>
 
 <p id="description">I leveraged my years of experience in the transportation industry to create a project for managing a small freight company.<br><br>
-  The application is written in <b>Java</b> using the <b>Spring framework</b>. To secure the application I used Spring Security. I also used the following technologies in the project: Spring Data JPA Lombok I chose the MySQL database and for migration I used Liquibase. Tests were conducted using the jUnit and Mockito libraries. I also used simple HTML CSS and Thymeleaf to see the immediate results of my work although this is just an addition.<br><br>
-  The application allows for user login and registration. It has three main panels: Forwarder Panel Accounting and Management.<br>
-  The Forwarder Panel allows you to add contractors: carriers and clients who assign transportation tasks to us. We can add cargo and create orders based on them. We have the ability to view all cargo and orders as well as change their statuses.<br>
+  The application is written in <b>Java</b> using the <b>Spring framework</b>. To secure the application I used Spring Security. I also used the following technologies in the project: Spring Data JPA, Lombok and I chose the MySQL database and for migration I used Liquibase. Tests were conducted using the jUnit and Mockito libraries. I also used simple HTML CSS and Thymeleaf to see the immediate results of my work although this is just an addition.<br><br>
+  The application allows for user login and registration. It has three main panels: Forwarder Panel, Accounting and Management.<br>
+  The Forwarder Panel allows to add contractors: carriers and clients who assign transportation tasks to us. We can add cargo and create orders based on them. We have the ability to view all cargo and orders as well as change their statuses.<br>
   The Accounting Panel allows adding invoices from carriers. A simulation of invoice payment has been introduced which automatically reduces the balance of a contractor. We can also filter invoices. Similar capabilities exist in the invoices section for clients. Additionally we can send reminders if the payment deadline has passed using a mock email inbox. The last section in this panel is the results of forwarders. We can check the margins achieved by a employee.<br>
   The last panel is the management panel. We can assign new roles to newly registered employees and also remove them.<br><br>Feel free to explore the project. For more information below.</p>
 
@@ -25,7 +25,7 @@ localhost:8080
 
 <h2>How it works ?</h2>
 <p> 
-  The first thing you will see is the login panel. You can use the credentials that have already been prepared. You can find them in the <b>admin.sql</b> file. This is a user in the database with an administrator role. They can perform all actions in the application. However, if you do not want to use the pre-prepared data, you can register yourself. Remember that even if you do this, you still need to log in as an administrator and then assign yourself a new role in the management panel.
+  The first thing you will see is the login panel. You can use the credentials that have already been prepared. You can find them in the <b>LOG-IN DATA</b> file in resources. This is a user in the database with an administrator role. They can perform all actions in the application. However, if you do not want to use the pre-prepared data, you can register yourself. Remember that even if you do this, you still need to log in as an administrator and then assign yourself a new role in the management panel.
 Screenshots below.
 </p>
 <img src="https://github.com/maciej-jankowskii/tsl-company/blob/5e27df3c133f3613562c95dfd4127085cce785d9/start.png" alt="project-screenshot" width="600" height="350/">
