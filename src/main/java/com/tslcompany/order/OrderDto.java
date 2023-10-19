@@ -1,7 +1,6 @@
 package com.tslcompany.order;
 
 
-import com.tslcompany.user.UserDto;
 import lombok.Getter;
 import lombok.Setter;
 
