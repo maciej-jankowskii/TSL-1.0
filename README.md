@@ -1,4 +1,8 @@
-<h1 align="center" id="title">TSL COMPANY</h1>
+<h2>UPDATE: This was my first larger application written in Spring. Unfortunately, it contains many errors and bad programming practices. Fortunately, I am learning quickly and drawing conclusions. Currently, I am creating a new version of this application that will have many more features. </br>
+<p><a href="https://github.com/maciej-jankowskii/tsl2.0">Click here -> TSL 2.0</a></p>
+</h2>
+<h1 align="center" id="title">TSL COMPANY</h2>
+
 
 <p id="description">I leveraged my years of experience in the transportation industry to create a project for managing a small freight company.<br><br>
   The application is written in <b>Java</b> using the <b>Spring framework</b>. To secure the application I used Spring Security. I also used the following technologies in the project: Spring Data JPA, Lombok and I chose the MySQL database and for migration I used Liquibase. Tests were conducted using the jUnit and Mockito libraries. I also used simple HTML CSS and Thymeleaf to see the immediate results of my work although this is just an addition.<br><br>
