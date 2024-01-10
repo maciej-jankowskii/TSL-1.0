@@ -1,5 +1,5 @@
 <h2>UPDATE: This was my first larger application written in Spring. Unfortunately, it contains many errors and bad programming practices. Fortunately, I am learning quickly and drawing conclusions. Currently, I am creating a new version of this application that will have many more features. </br>
-<p><a href="https://github.com/maciej-jankowskii/tsl2.0">Click here -> TSL 2.0</a></p>
+<p><a href="https://github.com/maciej-jankowskii/TSL-2.0">Click here -> TSL 2.0</a></p>
 </h2>
 <h1 align="center" id="title">TSL COMPANY</h2>
 
